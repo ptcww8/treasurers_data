@@ -11,9 +11,16 @@
             <a class="nav-link bg-primary" href="<%= treasurers_path %>">All Treasurers</a>
           </li>
 				<% end %>
+				<% if current_user.treasurer.present? %>
         <li class="nav-item">
           <a class="nav-link bg-warning" href="<%= treasurer_path(current_user.treasurer.id) %>">Update Treasurer Profile</a>
         </li>
+				<% else%>
+	        <li class="nav-item">
+          <a class="nav-link bg-warning" href="<%= new_treasurer_path %>">Update Treasurer Profile</a>
+        </li>			
+				
+				<% end %>
         <li class="nav-item">
           <a class="nav-link bg-success" href="<%= edit_user_registration_path %>">Update Email and Password</a>
         </li>

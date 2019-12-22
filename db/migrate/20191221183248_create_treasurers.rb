@@ -9,7 +9,7 @@ class CreateTreasurers < ActiveRecord::Migration[5.2]
       t.string :council
       t.string :phone_number
       t.string :whatsapp_number
-      t.string :employment_status
+      t.boolean :employment_status, default: false
       t.string :education_level
       t.boolean :born_again
       t.date :ud_join

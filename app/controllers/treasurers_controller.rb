@@ -98,7 +98,8 @@ class TreasurersController < ApplicationController
     end
 	
 		def check_admin_access
-		  head 404 and return if current_user.treasurer?
+		  redirect_to current_user.treasurer if current_user.treasurer.present?
+			redirect_to new_treasurer_path if current_user.treasurer.blank?
 	  end
 	
     def check_same_person

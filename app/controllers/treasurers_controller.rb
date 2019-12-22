@@ -103,6 +103,6 @@ class TreasurersController < ApplicationController
 	  end
 	
     def check_same_person
-      head 404 and return unless (@treasurer.user == current_user) || (!current_user.admin?)
+      head 404 and return unless (@treasurer.user == current_user) || (!current_user.treasurer?)
     end
 end

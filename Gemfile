@@ -90,6 +90,6 @@ gem "recaptcha", require: "recaptcha/rails"
 gem 'will_paginate', '~> 3.1.0'
 gem 'active_storage_validations'
 gem 'mini_magick', '>= 4.9.5'
-#gem "aws-sdk-s3", require: false
+gem "aws-sdk-s3", require: false
 gem 'delayed_job_active_record'
 gem 'ransack'

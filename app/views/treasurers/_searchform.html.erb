@@ -1,0 +1,11 @@
+<fieldset class="search-field">
+  <legend>Search Treasurers</legend>
+  <%= search_form_for @search do |f| %>
+    <div class="field">
+      <%= f.label :name_cont, "Name contains" %>
+      <%= f.text_field :first_name %>
+    </div>
+
+    <div class="actions"><%= f.submit "Search" %></div>
+  <% end %>
+</fieldset>

@@ -1,0 +1,18 @@
+<% @title = "Editing #{@treasurer.first_name} #{@treasurer.last_name}" %>
+
+<% content_for :description do %>
+  <% end %>
+
+<div class="container">
+  <div class="row">
+    <div class="col-12 col-md-9">
+      <div class="card card-sheet">
+        <div class="card-body">
+          <div class="container">
+            <%= render 'form' %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

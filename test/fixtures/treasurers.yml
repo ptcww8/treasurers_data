@@ -1,0 +1,41 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  first_name: MyString
+  middle_name: MyString
+  last_name: MyString
+  date_of_birth: 2019-12-21
+  branch_id: 1
+  council: MyString
+  phone_number: MyString
+  whatsapp_number: MyString
+  employment_status: MyString
+  education_level: MyString
+  born_again: false
+  ud_join: 2019-12-21
+  bishop_podcast: false
+  year_treasurer: 2019-12-21
+  treasurer_type: MyString
+  conference: MyString
+  training_manual: false
+  tithe: 1
+
+two:
+  first_name: MyString
+  middle_name: MyString
+  last_name: MyString
+  date_of_birth: 2019-12-21
+  branch_id: 1
+  council: MyString
+  phone_number: MyString
+  whatsapp_number: MyString
+  employment_status: MyString
+  education_level: MyString
+  born_again: false
+  ud_join: 2019-12-21
+  bishop_podcast: false
+  year_treasurer: 2019-12-21
+  treasurer_type: MyString
+  conference: MyString
+  training_manual: false
+  tithe: 1

@@ -1,0 +1,170 @@
+
+<%= form_for(@treasurer, html: { class: 'form-horizontal' }) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.form_group :first_name, class: 'row' do |f| %>
+      <%= f.label :first_name, class: 'control-label col-md-12' %>
+      <div class='col-12 col-md-10'>
+        <%= f.text_field :first_name, class: 'form-control' %>
+        <%= f.error_messages %>
+      </div>
+    <% end %>
+
+    <%= f.form_group :middle_name, class: 'row' do |f| %>
+      <%= f.label :middle_name, class: 'control-label col-md-12' %>
+      <div class='col-12 col-md-10'>
+        <%= f.text_field :middle_name, class: 'form-control' %>
+        <%= f.error_messages %>
+      </div>
+    <% end %>
+
+    <%= f.form_group :last_name, class: 'row' do |f| %>
+      <%= f.label :last_name, class: 'control-label col-md-12' %>
+      <div class='col-12 col-md-10'>
+        <%= f.text_field :last_name, class: 'form-control' %>
+        <%= f.error_messages %>
+      </div>
+    <% end %>
+
+    <%= f.form_group :date_of_birth, class: 'row' do |f| %>
+      <%= f.label :date_of_birth, class: 'control-label col-md-12' %>
+      <div class='col-12 col-md-10'>
+        <%= f.date_select :date_of_birth,{start_year:1960, end_year: Date.today.year - 18}, class: 'form-control',style: "width:20%; display:inline" %>
+        <%= f.error_messages %>
+      </div>
+    <% end %>
+
+    <%= f.form_group :branch_id, class: 'row' do |f| %>
+      <%= f.label :branch_id, class: 'control-label col-md-12' %>
+      <div class='col-12 col-md-10'>
+        <%= f.number_field :branch_id, class: 'form-control' %>
+        <%= f.error_messages %>
+      </div>
+    <% end %>
+
+    <%= f.form_group :council, class: 'row' do |f| %>
+      <%= f.label :council, class: 'control-label col-md-12' %>
+      <div class='col-12 col-md-10'>
+        <%= f.text_field :council, class: 'form-control' %>
+        <%= f.error_messages %>
+      </div>
+    <% end %>
+
+    <%= f.form_group :phone_number, class: 'row' do |f| %>
+      <%= f.label :phone_number, class: 'control-label col-md-12' %>
+      <div class='col-12 col-md-10'>
+        <%= f.text_field :phone_number, class: 'form-control' %>
+        <%= f.error_messages %>
+      </div>
+    <% end %>
+
+    <%= f.form_group :whatsapp_number, class: 'row' do |f| %>
+      <%= f.label :whatsapp_number, class: 'control-label col-md-12' %>
+      <div class='col-12 col-md-10'>
+        <%= f.text_field :whatsapp_number, class: 'form-control' %>
+        <%= f.error_messages %>
+      </div>
+    <% end %>
+
+    <%= f.form_group :employment_status, class: 'row' do |f| %>
+      <%= f.label "Are you employed?", class: 'control-label col-md-12' %>
+      <div class='col-12 col-md-9'>
+				<%= f.check_box :employment_status, class: 'form-control', 'data-toggle': "toggle", "data-on": "YES", "data-off": "NO", "data-onstyle": "success", "data-offstyle": "danger" %>
+        <%= f.error_messages %>
+      </div>
+    <% end %>
+
+    <%= f.form_group :education_level, class: 'row' do |f| %>
+      <%= f.label :education_level, class: 'control-label col-md-12' %>
+      <div class='col-12 col-md-10'>
+				<%= f.select :education_level, options_for_select(Treasurer::EDUCATION.map(&:humanize), @treasurer.education_level ? @treasurer.education_level.humanize : ""), {}, class: 'form-control' %>
+        <%= f.error_messages %>
+      </div>
+    <% end %>
+
+    <%= f.form_group :born_again, class: 'row' do |f| %>
+      <%= f.label "Are you born again?", class: 'control-label col-md-12' %>
+      <div class='col-12 col-md-9'>
+        <%= f.check_box :born_again, class: 'form-control', 'data-toggle': "toggle", "data-on": "YES", "data-off": "NO", "data-onstyle": "success", "data-offstyle": "danger" %>
+        <%= f.error_messages %>
+      </div>
+    <% end %>
+
+    <%= f.form_group :ud_join, class: 'row' do |f| %>
+      <%= f.label :ud_join, class: 'control-label col-md-12' %>
+      <div class='col-12 col-md-10'>
+        <%= f.date_select :ud_join,{start_year:1988, end_year: Date.today.year}, class: 'form-control',style: "width:20%; display:inline" %>
+        <%= f.error_messages %>
+      </div>
+    <% end %>
+
+    <%= f.form_group :bishop_podcast, class: 'row' do |f| %>
+      <%= f.label "Do you listen to Bishop Dag Heward Mills Podcast?", class: 'control-label col-md-12' %>
+      <div class='col-12 col-md-12'>
+        <%= f.check_box :bishop_podcast, class: 'form-control', 'data-toggle': "toggle", "data-on": "YES", "data-off": "NO", "data-onstyle": "success", "data-offstyle": "danger" %>
+        <%= f.error_messages %>
+      </div>
+    <% end %>
+
+    <%= f.form_group :year_treasurer, class: 'row' do |f| %>
+      <%= f.label "When Did You Become A Treasurer? ", class: 'control-label col-md-12' %>
+      <div class='col-12 col-md-10'>
+        <%= f.date_select :year_treasurer,{start_year:1988, end_year: Date.today.year}, class: 'form-control',style: "width:20%; display:inline" %>
+        <%= f.error_messages %>
+      </div>
+    <% end %>
+
+    <%= f.form_group :treasurer_type, class: 'row' do |f| %>
+      <%= f.label :treasurer_type, class: 'control-label col-md-12' %>
+      <div class='col-12 col-md-10'>
+				<%= f.select :treasurer_type, options_for_select(Treasurer::TREASURER_TYPE.map(&:humanize), @treasurer.treasurer_type ? @treasurer.treasurer_type.humanize : ""), {}, class: 'form-control' %>
+        <%= f.error_messages %>
+      </div>
+    <% end %>
+
+    <%= f.form_group :conference, class: 'row' do |f| %>
+      <%= f.label :conference, class: 'control-label col-md-12' %>
+      <div class='col-12 col-md-10'>
+        <%= f.text_field :conference, class: 'form-control' %>
+        <%= f.error_messages %>
+      </div>
+    <% end %>
+
+    <%= f.form_group :training_manual, class: 'row' do |f| %>
+      <%= f.label "Have you been trained with the treasurer's manual as a treasurer?", class: 'control-label col-md-12' %>
+      <div class='col-12 col-md-10'>
+        <%= f.check_box :training_manual, class: 'form-control', 'data-toggle': "toggle", "data-on": "YES", "data-off": "NO", "data-onstyle": "success", "data-offstyle": "danger" %>
+        <%= f.error_messages %>
+      </div>
+    <% end %>
+
+    <%= f.form_group :tithe, class: 'row' do |f| %>
+      <%= f.label "Do you pay tithes regularly", class: 'control-label col-md-12' %>
+      <div class='col-12 col-md-10'>
+				<%= f.select :tithe, options_for_select(Treasurer.tithes.keys,@treasurer.tithe ? @treasurer.tithe : ""), {}, class: 'form-control' %>
+				
+        <%= f.error_messages %>
+      </div>
+    <% end %>
+		
+	    <%= f.form_group :image, class: 'row' do |f| %>
+      <%= f.label :image, class: 'control-label col-md-12' %>
+      <div class='col-12 col-md-10'>
+				<%= f.file_field :image, class: 'form-control' %>
+        <%= f.error_messages %>
+      </div>
+    <% end %>	
+		
+		
+
+  </div>
+
+  <div class="d-flex">
+    <div class="ml-auto">
+      <%= f.submit class: 'btn btn-primary' %>
+      <%= link_to "Cancel", treasurers_path, class: 'btn btn-outline-default' %>
+    </div>
+  </div>
+<% end %>
+

@@ -1,0 +1,182 @@
+<% @title = "#{@treasurer.first_name} #{@treasurer.last_name}" %>
+
+<div class="container">
+  <div class="row">
+    <div class="col-12 col-md-9">
+      <div class="card">
+        <div class="card-body">
+          <div class="form-horizontal">
+                          <div class="form-group row">
+                <label class="col-12 col-md-2 form-label">First name</label>
+                <div class="col-12 col-md-10 form-control uneditable-input">
+                  <span>
+                    <%= @treasurer.first_name %>
+                  </span>
+                </div>
+              </div>
+
+                          <div class="form-group row">
+                <label class="col-12 col-md-2 form-label">Middle name</label>
+                <div class="col-12 col-md-10 form-control uneditable-input">
+                  <span>
+                    <%= @treasurer.middle_name %>
+                  </span>
+                </div>
+              </div>
+
+                          <div class="form-group row">
+                <label class="col-12 col-md-2 form-label">Last name</label>
+                <div class="col-12 col-md-10 form-control uneditable-input">
+                  <span>
+                    <%= @treasurer.last_name %>
+                  </span>
+                </div>
+              </div>
+
+                          <div class="form-group row">
+                <label class="col-12 col-md-2 form-label">Date of birth</label>
+                <div class="col-12 col-md-10 form-control uneditable-input">
+                  <span>
+                    <%= @treasurer.date_of_birth %>
+                  </span>
+                </div>
+              </div>
+
+                          <div class="form-group row">
+                <label class="col-12 col-md-2 form-label">Branch</label>
+                <div class="col-12 col-md-10 form-control uneditable-input">
+                  <span>
+                    <%= @treasurer.branch_id %>
+                  </span>
+                </div>
+              </div>
+
+                          <div class="form-group row">
+                <label class="col-12 col-md-2 form-label">Council</label>
+                <div class="col-12 col-md-10 form-control uneditable-input">
+                  <span>
+                    <%= @treasurer.council %>
+                  </span>
+                </div>
+              </div>
+
+                          <div class="form-group row">
+                <label class="col-12 col-md-2 form-label">Phone number</label>
+                <div class="col-12 col-md-10 form-control uneditable-input">
+                  <span>
+                    <%= @treasurer.phone_number %>
+                  </span>
+                </div>
+              </div>
+
+                          <div class="form-group row">
+                <label class="col-12 col-md-2 form-label">Whatsapp number</label>
+                <div class="col-12 col-md-10 form-control uneditable-input">
+                  <span>
+                    <%= @treasurer.whatsapp_number %>
+                  </span>
+                </div>
+              </div>
+
+                          <div class="form-group row">
+                <label class="col-12 col-md-2 form-label">Employment status</label>
+                <div class="col-12 col-md-10 form-control uneditable-input">
+                  <span>
+                    <%= @treasurer.employment_status %>
+                  </span>
+                </div>
+              </div>
+
+                          <div class="form-group row">
+                <label class="col-12 col-md-2 form-label">Education level</label>
+                <div class="col-12 col-md-10 form-control uneditable-input">
+                  <span>
+                    <%= @treasurer.education_level %>
+                  </span>
+                </div>
+              </div>
+
+                          <div class="form-group row">
+                <label class="col-12 col-md-2 form-label">Born again</label>
+                <div class="col-12 col-md-10 form-control uneditable-input">
+                  <span>
+                    <%= @treasurer.born_again %>
+                  </span>
+                </div>
+              </div>
+
+                          <div class="form-group row">
+                <label class="col-12 col-md-2 form-label">Ud join</label>
+                <div class="col-12 col-md-10 form-control uneditable-input">
+                  <span>
+                    <%= @treasurer.ud_join %>
+                  </span>
+                </div>
+              </div>
+
+                          <div class="form-group row">
+                <label class="col-12 col-md-2 form-label">Bishop podcast</label>
+                <div class="col-12 col-md-10 form-control uneditable-input">
+                  <span>
+                    <%= @treasurer.bishop_podcast %>
+                  </span>
+                </div>
+              </div>
+
+                          <div class="form-group row">
+                <label class="col-12 col-md-2 form-label">Year treasurer</label>
+                <div class="col-12 col-md-10 form-control uneditable-input">
+                  <span>
+                    <%= @treasurer.year_treasurer %>
+                  </span>
+                </div>
+              </div>
+
+                          <div class="form-group row">
+                <label class="col-12 col-md-2 form-label">Treasurer type</label>
+                <div class="col-12 col-md-10 form-control uneditable-input">
+                  <span>
+                    <%= @treasurer.treasurer_type %>
+                  </span>
+                </div>
+              </div>
+
+                          <div class="form-group row">
+                <label class="col-12 col-md-2 form-label">Conference</label>
+                <div class="col-12 col-md-10 form-control uneditable-input">
+                  <span>
+                    <%= @treasurer.conference %>
+                  </span>
+                </div>
+              </div>
+
+                          <div class="form-group row">
+                <label class="col-12 col-md-2 form-label">Training manual</label>
+                <div class="col-12 col-md-10 form-control uneditable-input">
+                  <span>
+                    <%= @treasurer.training_manual %>
+                  </span>
+                </div>
+              </div>
+
+                          <div class="form-group row">
+                <label class="col-12 col-md-2 form-label">Tithe</label>
+                <div class="col-12 col-md-10 form-control uneditable-input">
+                  <span>
+                    <%= @treasurer.tithe %>
+                  </span>
+                </div>
+              </div>
+
+                        <div class="d-flex">
+              <div class="ml-auto">
+                <%= link_to fa_icon_tag("pencil") + ' Edit', edit_treasurer_path(@treasurer), class: 'btn btn-primary' %>
+                <%= link_to 'Back', treasurers_path, class: 'btn' %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

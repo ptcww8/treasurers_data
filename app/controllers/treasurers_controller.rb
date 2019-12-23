@@ -1,8 +1,8 @@
 class TreasurersController < ApplicationController
   layout "scaffold"
 
-  before_action :set_treasurer, only: [:show, :edit, :update, :destroy, :toggle_verify]
-	before_action :check_admin_access, only: [:index, :destroy]
+  before_action :set_treasurer, only: [:show, :edit, :update, :destroy, :toggle_verify,:make_principal_treasurer]
+	before_action :check_admin_access, only: [:index, :destroy,:make_principal_treasurer]
 	before_action :check_same_person, only: [:show, :edit, :update]
 
   # GET /treasurers
@@ -92,14 +92,22 @@ class TreasurersController < ApplicationController
   end
 
   def toggle_verify
+		head 404 and return if current_user.treasurer?
 		if @treasurer.update_attributes(verified: !@treasurer.verified)
 			redirect_to @treasurer, notice: 'You successsfully changed verification status of treasurer. An email has been sent'
 		end
-		
-		
-		
   end
 	
+	def make_principal_treasurer	
+		head 404 and return unless current_user.admin?
+		if @treasurer.user.principal_treasurer?
+			@treasurer.user.treasurer!
+		elsif @treasurer.user.treasurer?
+			@treasurer.user.principal_treasurer!
+		end		
+		redirect_to @treasurer, notice: 'This treasurer is a principal treasurer now. They have admin privileges for their council'	
+		
+	end
 	
   private
     # Use callbacks to share common setup or constraints between actions.

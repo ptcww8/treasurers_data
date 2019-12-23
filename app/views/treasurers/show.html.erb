@@ -1,17 +1,20 @@
 <% @title = "#{@treasurer.first_name} #{@treasurer.last_name}" %>
 
 <div class="container">
-	  <div class="row">
+	
+		<div class="row">
 			<div class="col-12 col-md-8">
-				<%= link_to @treasurer.verified ? "Request More Information" : "Complete Verification",verify_treasurer_path, class:"btn #{@treasurer.verified ? 'bg-danger' : 'bg-success'} pull-right mb-3 #{@treasurer.verified ? 'verify_btn' : ''}" %>
+				<%= link_to @treasurer.user.treasurer? ? "Make Principal Treasurer" : "Remove Principal Treasurer Role", make_principal_treasurer_path, class:"btn pull-right mb-3 #{@treasurer.verified ? 'bg-warning' : 'bg-success'} #{@treasurer.verified ?  'verify_btn' : ''}" if current_user.admin? %> <br>
+				</h3>
 			</div>
-			
-	</div>
+</div>
+	
+	
 	
 	<div class="row">
 			<div class="col-12 col-md-8">
 				<h3 class= "<%=@treasurer.verified ? 'text-success' : 'text-danger' %>">
-					<%= @treasurer.verified ? "Treasurer has been verified" : "This Treasurer is not verified yet" %>
+					<%= @treasurer.verified ? "Treasurer Information has been verified" : "Treasurer Information is not verified yet" %>
 				</h3>
 			</div>
 			
@@ -197,8 +200,9 @@
 
                         <div class="d-flex">
               <div class="ml-auto">
+								<%= link_to @treasurer.verified ? "Request More Information" : "Complete Verification",verify_treasurer_path, class:"btn #{@treasurer.verified ? 'bg-danger' : 'bg-success'} #{@treasurer.verified ? 'verify_btn' : ''}" unless current_user.treasurer? %>
                 <%= link_to fa_icon_tag("pencil") + ' Edit', edit_treasurer_path(@treasurer), class: 'btn btn-primary' %>
-                <%= link_to 'Back', treasurers_path, class: 'btn' %>
+                <%= link_to 'Back', treasurers_path, class: 'btn' unless current_user.treasurer? %>
               </div>
             </div>
           </div>

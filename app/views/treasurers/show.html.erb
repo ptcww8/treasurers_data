@@ -1,6 +1,33 @@
 <% @title = "#{@treasurer.first_name} #{@treasurer.last_name}" %>
 
 <div class="container">
+	  <div class="row">
+			<div class="col-12 col-md-8">
+				<%= link_to @treasurer.verified ? "Request More Information" : "Complete Verification",verify_treasurer_path, class:"btn #{@treasurer.verified ? 'bg-danger' : 'bg-success'} pull-right mb-3 #{@treasurer.verified ? 'verify_btn' : ''}" %>
+			</div>
+			
+	</div>
+	
+	<div class="row">
+			<div class="col-12 col-md-8">
+				<h3 class= "<%=@treasurer.verified ? 'text-success' : 'text-danger' %>">
+					<%= @treasurer.verified ? "Treasurer has been verified" : "This Treasurer is not verified yet" %>
+				</h3>
+			</div>
+			
+	</div>
+	 <div class="modal fade" id="verifyform" tabindex="-1" role="dialog" aria-labelledby="PayForCredits" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-body" style="overflow:auto">
+         <div class='col-12 col-md-10'>
+				Leave Comments
+      </div>       
+      </div>
+    </div>
+  </div>
+</div>
+	
   <div class="row">
     <div class="col-12 col-md-8">
       <div class="card">
@@ -82,7 +109,7 @@
                 <label class="col-12 col-md-12 form-label">Are You Currently Employed?</label>
                 <div class="ml-3 col-12 col-md-10 form-control uneditable-input">
                   <span>
-                    <%= @treasurer.employment_status %>
+                    <%= @treasurer.employment_status ? "Yes" : "No" %>
                   </span>
                 </div>
               </div>
@@ -100,7 +127,7 @@
                 <label class="col-12 col-md-12 form-label">Are you born again?</label>
                 <div class="ml-3 col-12 col-md-10 form-control uneditable-input">
                   <span>
-                    <%= @treasurer.born_again %>
+                    <%= @treasurer.born_again ? "Yes" : "No" %>
                   </span>
                 </div>
               </div>
@@ -118,7 +145,7 @@
                 <label class="col-12 col-md-12 form-label">Do you listen to Bishop Dag Heward Mills Podcast?</label>
                 <div class="ml-3 col-12 col-md-10 form-control uneditable-input">
                   <span>
-                    <%= @treasurer.bishop_podcast %>
+                    <%= @treasurer.bishop_podcast ? "Yes" : "No" %>
                   </span>
                 </div>
               </div>
@@ -145,7 +172,7 @@
                 <label class="col-12 col-md-12 form-label">Conference</label>
                 <div class="ml-3 col-12 col-md-10 form-control uneditable-input">
                   <span>
-                    <%= @treasurer.conference %>
+                    <%= @treasurer.conference.join(", ") if @treasurer.conference.present? %>
                   </span>
                 </div>
               </div>
@@ -154,7 +181,7 @@
                 <label class="col-12 col-md-12 form-label">Have you been trained with the treasurer's manual as a treasurer?</label>
                 <div class="ml-3 col-12 col-md-10 form-control uneditable-input">
                   <span>
-                    <%= @treasurer.training_manual %>
+                    <%= @treasurer.training_manual ? "Yes" : "No" %>
                   </span>
                 </div>
               </div>
@@ -163,7 +190,7 @@
                 <label class="col-12 col-md-12 form-label">Do you pay tithes regularly</label>
                 <div class="ml-3 col-12 col-md-10 form-control uneditable-input">
                   <span>
-                    <%= @treasurer.tithe %>
+                    <%= @treasurer.tithe ? "Yes" : "No" %>
                   </span>
                 </div>
               </div>

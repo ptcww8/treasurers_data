@@ -1,7 +1,7 @@
 class TreasurersController < ApplicationController
   layout "scaffold"
 
-  before_action :set_treasurer, only: [:show, :edit, :update, :destroy]
+  before_action :set_treasurer, only: [:show, :edit, :update, :destroy, :toggle_verify]
 	before_action :check_admin_access, only: [:index, :destroy]
 	before_action :check_same_person, only: [:show, :edit, :update]
 
@@ -45,8 +45,10 @@ class TreasurersController < ApplicationController
 			@treasurer.employment_status = ActiveModel::Type::Boolean.new.cast(params[:treasurer][:employment_status])
 		end
 
+		@treasurer.conference = params[:treasurer][:conference]
+		
     if @treasurer.save
-      redirect_to @treasurer, notice: 'Treasurer was successfully created.'
+      redirect_to @treasurer, notice: 'Treasurer Information was successfully captured.'
     else
       render :new
     end
@@ -71,11 +73,13 @@ class TreasurersController < ApplicationController
 			@treasurer.employment_status = ActiveModel::Type::Boolean.new.cast(params[:treasurer][:employment_status])
 		end
 		
+		@treasurer.conference = params[:treasurer][:conference]
+		
 		@treasurer.save!
 
     if @treasurer.update(treasurer_params)
 			
-      redirect_to @treasurer, notice: 'Treasurer was successfully updated.'
+      redirect_to @treasurer, notice: 'Treasurer Information was successfully updated.'
     else
       render :edit
     end
@@ -87,6 +91,16 @@ class TreasurersController < ApplicationController
     redirect_to treasurers_url, notice: 'Treasurer was successfully destroyed.'
   end
 
+  def toggle_verify
+		if @treasurer.update_attributes(verified: !@treasurer.verified)
+			redirect_to @treasurer, notice: 'You successsfully changed verification status of treasurer. An email has been sent'
+		end
+		
+		
+		
+  end
+	
+	
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_treasurer

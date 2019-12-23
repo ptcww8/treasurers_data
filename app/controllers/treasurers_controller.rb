@@ -17,6 +17,7 @@ class TreasurersController < ApplicationController
 
   # GET /treasurers/new
   def new
+		head 404 and return if current_user.treasurer.present?
     @treasurer = Treasurer.new
   end
 

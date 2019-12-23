@@ -92,9 +92,9 @@
     <% end %>
 
     <%= f.form_group :ud_join, class: 'row' do |f| %>
-      <%= f.label :ud_join, class: 'control-label col-md-12' %>
+      <%= f.label "When Did you join the UD?", class: 'control-label col-md-12' %>
       <div class='col-12 col-md-10'>
-        <%= f.date_select :ud_join,{start_year:1988, end_year: Date.today.year}, class: 'form-control',style: "width:20%; display:inline" %>
+        <%= f.date_select :ud_join,{start_year:1988, end_year: Date.today.year}, class: 'form-control',style: "width:20%" %>
         <%= f.error_messages %>
       </div>
     <% end %>
@@ -110,7 +110,7 @@
     <%= f.form_group :year_treasurer, class: 'row' do |f| %>
       <%= f.label "When Did You Become A Treasurer? ", class: 'control-label col-md-12' %>
       <div class='col-12 col-md-10'>
-        <%= f.date_select :year_treasurer,{start_year:1988, end_year: Date.today.year}, class: 'form-control',style: "width:20%; display:inline" %>
+        <%= f.date_select :year_treasurer,{start_year:1988, end_year: Date.today.year}, class: 'form-control',style: "width:20%" %>
         <%= f.error_messages %>
       </div>
     <% end %>

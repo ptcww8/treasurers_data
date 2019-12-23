@@ -23,3 +23,20 @@ test:
 production:
   <<: *default
   database: db/production.sqlite3
+	
+global:
+ adapter: sqlserver
+ database: "xxx"
+ username: "xxx"
+ password: "xxx"
+ host: "xxx"
+ port: "1433"
+ mode: :dblib
+
+abs:
+ adapter: mysql
+ database: "abs_db"
+ username: "root"
+ password: "xxx"
+ host: "localhost"
+ port: "3306"

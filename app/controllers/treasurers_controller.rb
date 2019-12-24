@@ -7,14 +7,18 @@ class TreasurersController < ApplicationController
 
   # GET /treasurers
   def index
-		@search = Treasurer.ransack(params[:q])
+		if current_user.principal_treasurer?
+		  @search = Treasurer.with_attached_image.where(council: current_user.treasurer.council).ransack(params[:q])
+		elsif current_user.admin?
+			@search = Treasurer.with_attached_image.ransack(params[:q])
+		end
     @treasurers = @search.result(distinct: true).order(id: :desc).paginate(page: params[:page])
   end
 
   def advanced_search
-    @search = ransack_params
+    @search = Treasurer.ransack(params[:q])
     @search.build_grouping unless @search.groupings.any?
-    @users  = ransack_result
+    @treasurers  = @search.result(distinct: true).order(id: :desc).paginate(page: params[:page])
   end
 	
 	

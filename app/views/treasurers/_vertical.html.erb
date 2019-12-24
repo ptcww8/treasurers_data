@@ -6,17 +6,16 @@
       <div class="col-md-3 mb-3">
 				
 				<div class="card  ">
-					<%= link_to (image_tag treasurer.image, width: '100%', class:"card-img-top", alt:"#{treasurer.first_name} #{treasurer.last_name}"), treasurer if treasurer.image.attached? %>
+					<%= link_to (image_tag treasurer.image.variant(resize: "250x250"), width: '100%', class:"card-img-top", alt:"#{treasurer.first_name} #{treasurer.last_name}"), treasurer if treasurer.image.attached? %>
 					<div class="card-body">
 						<h4 class="card-title"><%= link_to "#{treasurer.first_name} #{treasurer.last_name}", treasurer %></h4>
 						<p class="card-text">
 						<b>Council: </b><%= treasurer.council %><br>
-				 <b>Whatsapp #: </b><%= treasurer.whatsapp_number %><br>
+				 <b>Whatsapp #: <br></b><%= treasurer.whatsapp_number %><br>
 				 <b>Treasurer from: </b><%= treasurer.year_treasurer.year %><br>
-				 <b>Type of Treasurer: </b><%= treasurer.treasurer_type %><br>
+				 <b>Type of Treasurer:<br> </b><%= treasurer.treasurer_type %><br>
 
 						</p>
-						<%#= link_to "#{treasurer.first_name} #{treasurer.last_name}", treasurer, class:"btn btn-primary" %>
 					</div>
 				</div>
 				

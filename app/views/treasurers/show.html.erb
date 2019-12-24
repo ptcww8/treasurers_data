@@ -23,7 +23,7 @@
 	
   <div class="row">
 		<div class="col-12 col-md-4">
-			<%= image_tag @treasurer.image.variant(resize: "250x250"), width: '100%', class:"card-img-top", alt:"#{@treasurer.first_name} #{@treasurer.last_name}" if @treasurer.image.attached? %>
+			<%= image_tag @treasurer.image.variant(resize: "250x250",auto_orient: true), width: '100%', class:"card-img-top", alt:"#{@treasurer.first_name} #{@treasurer.last_name}" if @treasurer.image.attached? %>
 			
 		</div>
     <div class="col-12 col-md-8">

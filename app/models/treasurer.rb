@@ -13,7 +13,7 @@ class Treasurer < ApplicationRecord
 	
 	def image_resized
 		#image.variant(resize: "250x250", auto_orient: true)
-		image.variant(combine_options: { resize: "250x250>", extent: "400x300", background: "grey", gravity: "center"})
+		image.variant(combine_options: { resize: "250x250>", extent: "400x300", background: "grey", gravity: "center", auto_orient: true})
 	end
 
 end

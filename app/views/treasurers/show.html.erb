@@ -23,7 +23,7 @@
 	
   <div class="row">
 		<div class="col-12 col-md-4">
-			<%= image_tag @treasurer.image.variant(resize: "250x250",auto_orient: true), width: '100%', class:"card-img-top", alt:"#{@treasurer.first_name} #{@treasurer.last_name}" if @treasurer.image.attached? %>
+			<%= image_tag @treasurer.image_resized, width: '100%', class:"card-img-top", alt:"#{@treasurer.first_name} #{@treasurer.last_name}" if @treasurer.image.attached? %>
 			
 		</div>
     <div class="col-12 col-md-8">
@@ -177,6 +177,16 @@
                 </label>
               </div>
 
+					   <div class="form-group row">
+                <label class="col-12 col-md-12 form-label">Do you have any major financial obligations/debts; If so list...<br>
+                  <span>
+                    <%= @treasurer.debt.map{|db| Treasurer::DEBT_OBLIGATION[db.to_i]}.join(", ") if @treasurer.debt.present? %>
+                  </span>
+                </label>
+              </div>
+					
+					
+					
                         <div class="d-flex">
               <div class="ml-auto">
 								<%= link_to @treasurer.verified ? "Request More Information" : "Complete Verification",verify_treasurer_path, class:"btn #{@treasurer.verified ? 'bg-warning' : 'bg-success'} #{@treasurer.verified ? 'verify_btn' : ''}" unless current_user.treasurer? %>

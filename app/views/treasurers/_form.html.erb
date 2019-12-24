@@ -122,7 +122,30 @@
         <%= f.error_messages %>
       </div>
     <% end %>
-
+		
+    <%= f.form_group :tithe, class: 'row' do |f| %>
+      <%= f.label "Do you pay tithes regularly", class: 'control-label col-md-12' %>
+      <div class='col-12 col-md-10'>
+				<%= f.select :tithe, options_for_select(Treasurer.tithes.keys,@treasurer.tithe ? @treasurer.tithe : ""), {}, class: 'form-control' %>
+				
+        <%= f.error_messages %>
+      </div>
+    <% end %>
+		
+	    <%= f.form_group :image, class: 'row' do |f| %>
+      <%= f.label :image, class: 'control-label col-md-12' %>
+      <div class='col-12 col-md-10'>
+				<%= f.file_field :image, class: 'form-control' %>
+        <%= f.error_messages %>
+      </div>
+    <% end %>	
+	
+		
+		
+		
+		
+		
+<% unless current_user.treasurer? %>
     <%= f.form_group :conference, class: 'row' do |f| %>
       <%= f.label "Which Conferences Have You Attended?", class: 'control-label col-md-12' %>
       <div class=' ml-3 col-12 col-md-10 border border-primary border-rounded p-2'>
@@ -147,24 +170,35 @@
         <%= f.error_messages %>
       </div>
     <% end %>
+		
+		
+		
+		    <%= f.form_group :debt, class: 'row' do |f| %>
+      <%= f.label "Do you have any major financial obligations/debts; If so list", class: 'control-label col-md-12' %>
+      <div class=' ml-3 col-12 col-md-10 border border-primary border-rounded p-2'>
+				<%  Treasurer::DEBT_OBLIGATION.each_with_index do |debt, ind| %>
 
-    <%= f.form_group :tithe, class: 'row' do |f| %>
-      <%= f.label "Do you pay tithes regularly", class: 'control-label col-md-12' %>
-      <div class='col-12 col-md-10'>
-				<%= f.select :tithe, options_for_select(Treasurer.tithes.keys,@treasurer.tithe ? @treasurer.tithe : ""), {}, class: 'form-control' %>
-				
+        <label class="pl-5" style="width:50%">
+            <% if @treasurer.debt.present? && @treasurer.debt.include?(ind.to_s) %>
+              <%= check_box("treasurer", "debt", {:multiple => true, :checked => true, :class =>"form-check-input"}, ind, nil) + debt.to_s %>
+            <% else %>
+              <%= check_box("treasurer", "debt", {:multiple => true, :class =>"form-check-input"}, ind, nil) + debt.to_s %>
+            <% end %>
+        </label>
+<% end %>
+				<%= f.label "If other, give reason below: ", class: 'control-label col-md-12' %>
+				<%= f.text_area :debt_reason, class: 'form-control' %>
+
         <%= f.error_messages %>
       </div>
     <% end %>
 		
-	    <%= f.form_group :image, class: 'row' do |f| %>
-      <%= f.label :image, class: 'control-label col-md-12' %>
-      <div class='col-12 col-md-10'>
-				<%= f.file_field :image, class: 'form-control' %>
-        <%= f.error_messages %>
-      </div>
-    <% end %>	
 		
+		
+		
+		
+		
+<% end %>	
 		
 
   </div>

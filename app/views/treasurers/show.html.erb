@@ -200,9 +200,11 @@
 
                         <div class="d-flex">
               <div class="ml-auto">
-								<%= link_to @treasurer.verified ? "Request More Information" : "Complete Verification",verify_treasurer_path, class:"btn #{@treasurer.verified ? 'bg-danger' : 'bg-success'} #{@treasurer.verified ? 'verify_btn' : ''}" unless current_user.treasurer? %>
+								<%= link_to @treasurer.verified ? "Request More Information" : "Complete Verification",verify_treasurer_path, class:"btn #{@treasurer.verified ? 'bg-warning' : 'bg-success'} #{@treasurer.verified ? 'verify_btn' : ''}" unless current_user.treasurer? %>
                 <%= link_to fa_icon_tag("pencil") + ' Edit', edit_treasurer_path(@treasurer), class: 'btn btn-primary' %>
                 <%= link_to 'Back', treasurers_path, class: 'btn' unless current_user.treasurer? %>
+								<%= link_to theme_icon_tag("trash"), @treasurer, 'data-toggle': 'tooltip', title: 'Delete',
+                        data: { confirm: 'This will delete both user and treasurer information. Are you sure?' }, method: :delete, class: 'btn btn-danger' if current_user.admin? %>
               </div>
             </div>
           </div>

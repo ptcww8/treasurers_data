@@ -87,8 +87,8 @@ class TreasurersController < ApplicationController
 
   # DELETE /treasurers/1
   def destroy
-    @treasurer.destroy
-    redirect_to treasurers_url, notice: 'Treasurer was successfully destroyed.'
+    @treasurer.user.destroy
+    redirect_to treasurers_url, notice: 'Treasurer was successfully removed from system.'
   end
 
   def toggle_verify

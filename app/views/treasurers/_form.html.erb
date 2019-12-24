@@ -126,7 +126,7 @@
     <%= f.form_group :conference, class: 'row' do |f| %>
       <%= f.label "Which Conferences Have You Attended?", class: 'control-label col-md-12' %>
       <div class=' ml-3 col-12 col-md-10 border border-primary border-rounded p-2'>
-				<%  (2018..Date.today.year).to_a.each do |year| %>
+				<%  (2019..Date.today.year).to_a.uniq.each do |year| %>
 
         <label class="pl-5" style="width:20%">
             <% if @treasurer.conference.present? && @treasurer.conference.include?(year.to_s) %>

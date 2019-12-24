@@ -8,17 +8,7 @@
 				</h3>
 			</div>
 </div>
-	
-	
-	
-	<div class="row">
-			<div class="col-12 col-md-8">
-				<h3 class= "<%=@treasurer.verified ? 'text-success' : 'text-danger' %>">
-					<%= @treasurer.verified ? "Treasurer Information has been verified" : "Treasurer Information is not verified yet" %>
-				</h3>
-			</div>
-			
-	</div>
+
 	 <div class="modal fade" id="verifyform" tabindex="-1" role="dialog" aria-labelledby="PayForCredits" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
@@ -32,170 +22,159 @@
 </div>
 	
   <div class="row">
+		<div class="col-12 col-md-4">
+			<%= image_tag @treasurer.image, width: '100%', class:"card-img-top", alt:"#{@treasurer.first_name} #{@treasurer.last_name}" if @treasurer.image.attached? %>
+			
+		</div>
     <div class="col-12 col-md-8">
+							<h3 class= "<%=@treasurer.verified ? 'text-success' : 'text-danger' %>">
+					<%= @treasurer.verified ? "Treasurer Information has been verified" : "Treasurer Information is not verified yet" %>
+				</h3>
       <div class="card">
-        <div class="card-body">
-          <div class="form-horizontal">
-                          <div class="form-group row">
-                <label class="col-12 col-md-12 form-label">First name</label>
-                <div class="ml-3 col-12 col-md-10 form-control uneditable-input">
-                  <span>
+        <div class="card-body showprofile">
+             <div class="form-group row">
+                <label class="col-12 col-md-12 form-label">First name: 
+									<span>
                     <%= @treasurer.first_name %>
                   </span>
-                </div>
+							 </label>
+                  
               </div>
 
               <div class="form-group row">
-                <label class="col-12 col-md-12 form-label">Middle name</label>
-                <div class="ml-3 col-12 col-md-10 form-control uneditable-input">
-                  <span>
+                <label class="col-12 col-md-12 form-label">Middle name: 
+									<span>
                     <%= @treasurer.middle_name %>
                   </span>
-                </div>
+								</label>
               </div>
 
-                          <div class="form-group row">
-                <label class="col-12 col-md-12 form-label">Last name</label>
-                <div class="ml-3 col-12 col-md-10 form-control uneditable-input">
-                  <span>
+             <div class="form-group row">
+                <label class="col-12 col-md-12 form-label">Last name:
+									<span>
                     <%= @treasurer.last_name %>
                   </span>
-                </div>
+							 </label>
               </div>
 
                           <div class="form-group row">
-                <label class="col-12 col-md-12 form-label">Date of birth</label>
-                <div class="ml-3 col-12 col-md-10 form-control uneditable-input">
+                <label class="col-12 col-md-12 form-label">Date of birth:
                   <span>
                     <%= @treasurer.date_of_birth.strftime('%A, %d %B, %Y') %>
                   </span>
-                </div>
+                </label>
               </div>
 
                           <div class="form-group row">
-                <label class="col-12 col-md-12 form-label">Branch</label>
-                <div class="ml-3 col-12 col-md-10 form-control uneditable-input">
+                <label class="col-12 col-md-12 form-label">Branch:
                   <span>
                     <%= @treasurer.branch_id %>
                   </span>
-                </div>
+                </label>
               </div>
 
-                          <div class="form-group row">
-                <label class="col-12 col-md-12 form-label">Council</label>
-                <div class="ml-3 col-12 col-md-10 form-control uneditable-input">
+              <div class="form-group row">
+                <label class="col-12 col-md-12 form-label">Council:
                   <span>
                     <%= @treasurer.council %>
                   </span>
-                </div>
+                </label>
               </div>
 
-                          <div class="form-group row">
-                <label class="col-12 col-md-12 form-label">Phone number</label>
-                <div class="ml-3 col-12 col-md-10 form-control uneditable-input">
+              <div class="form-group row">
+                <label class="col-12 col-md-12 form-label">Phone number
                   <span>
                     <%= @treasurer.phone_number %>
                   </span>
-                </div>
+                </label>
               </div>
 
-                          <div class="form-group row">
-                <label class="col-12 col-md-12 form-label">Whatsapp number</label>
-                <div class="ml-3 col-12 col-md-10 form-control uneditable-input">
+              <div class="form-group row">
+                <label class="col-12 col-md-12 form-label">Whatsapp number
                   <span>
                     <%= @treasurer.whatsapp_number %>
                   </span>
-                </div>
+                </label>
               </div>
 
                           <div class="form-group row">
-                <label class="col-12 col-md-12 form-label">Are You Currently Employed?</label>
-                <div class="ml-3 col-12 col-md-10 form-control uneditable-input">
+                <label class="col-12 col-md-12 form-label">Are You Currently Employed?
                   <span>
                     <%= @treasurer.employment_status ? "Yes" : "No" %>
                   </span>
-                </div>
+                </label>
               </div>
 
                           <div class="form-group row">
-                <label class="col-12 col-md-12 form-label">Education level</label>
-                <div class="ml-3 col-12 col-md-10 form-control uneditable-input">
+                <label class="col-12 col-md-12 form-label">Education level:
                   <span>
                     <%= @treasurer.education_level %>
                   </span>
-                </div>
+                </label>
               </div>
 
                           <div class="form-group row">
-                <label class="col-12 col-md-12 form-label">Are you born again?</label>
-                <div class="ml-3 col-12 col-md-10 form-control uneditable-input">
+                <label class="col-12 col-md-12 form-label">Are you born again?
                   <span>
                     <%= @treasurer.born_again ? "Yes" : "No" %>
                   </span>
-                </div>
+                </label>
               </div>
 
                           <div class="form-group row">
-                <label class="col-12 col-md-12 form-label">When Did you join the UD?</label>
-                <div class="ml-3 col-12 col-md-10 form-control uneditable-input">
+                <label class="col-12 col-md-12 form-label">When Did you join the UD?
                   <span>
                     <%= @treasurer.ud_join.year %>
                   </span>
-                </div>
+                </label>
               </div>
 
                           <div class="form-group row">
-                <label class="col-12 col-md-12 form-label">Do you listen to Bishop Dag Heward Mills Podcast?</label>
-                <div class="ml-3 col-12 col-md-10 form-control uneditable-input">
+                <label class="col-12 col-md-12 form-label">Do you listen to Bishop Dag Heward Mills Podcast?
                   <span>
                     <%= @treasurer.bishop_podcast ? "Yes" : "No" %>
                   </span>
-                </div>
+                </label>
               </div>
 
                           <div class="form-group row">
-                <label class="col-12 col-md-12 form-label">When Did You Become A Treasurer? </label>
-                <div class="ml-3 col-12 col-md-10 form-control uneditable-input">
+                <label class="col-12 col-md-12 form-label">When Did You Become A Treasurer? 
                   <span>
                     <%= @treasurer.year_treasurer.year %>
                   </span>
-                </div>
+                </label>
               </div>
 
                           <div class="form-group row">
-                <label class="col-12 col-md-12 form-label">Treasurer type</label>
-                <div class="ml-3 col-12 col-md-10 form-control uneditable-input">
+                <label class="col-12 col-md-12 form-label">Treasurer type:
                   <span>
                     <%= @treasurer.treasurer_type %>
                   </span>
-                </div>
+                </label>
               </div>
 
                           <div class="form-group row">
-                <label class="col-12 col-md-12 form-label">Conference</label>
-                <div class="ml-3 col-12 col-md-10 form-control uneditable-input">
+                <label class="col-12 col-md-12 form-label">Conferences Attended: 
                   <span>
                     <%= @treasurer.conference.join(", ") if @treasurer.conference.present? %>
                   </span>
-                </div>
+                </label>
               </div>
 
-                          <div class="form-group row">
-                <label class="col-12 col-md-12 form-label">Have you been trained with the treasurer's manual as a treasurer?</label>
-                <div class="ml-3 col-12 col-md-10 form-control uneditable-input">
-                  <span>
-                    <%= @treasurer.training_manual ? "Yes" : "No" %>
-                  </span>
-                </div>
-              </div>
+		<div class="form-group row">
+				<label class="col-12 col-md-12 form-label">Have you been trained with the treasurer's manual as a treasurer?
+					<span>
+						<%= @treasurer.training_manual ? "Yes" : "No" %>
+					</span>
+				</label>
+			</div>
 
-                          <div class="form-group row">
-                <label class="col-12 col-md-12 form-label">Do you pay tithes regularly</label>
-                <div class="ml-3 col-12 col-md-10 form-control uneditable-input">
+             <div class="form-group row">
+                <label class="col-12 col-md-12 form-label">Do you pay tithes regularly?
                   <span>
                     <%= @treasurer.tithe ? "Yes" : "No" %>
                   </span>
-                </div>
+                </label>
               </div>
 
                         <div class="d-flex">
@@ -207,7 +186,7 @@
                         data: { confirm: 'This will delete both user and treasurer information. Are you sure?' }, method: :delete, class: 'btn btn-danger' if current_user.admin? %>
               </div>
             </div>
-          </div>
+
         </div>
       </div>
     </div>

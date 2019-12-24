@@ -7,10 +7,18 @@ class TreasurersController < ApplicationController
 
   # GET /treasurers
   def index
-		@search = Treasurer.search(params[:q])
-    @treasurers = @search.result(distinct: true).order(id: :desc)
+		@search = Treasurer.ransack(params[:q])
+    @treasurers = @search.result(distinct: true).order(id: :desc).paginate(page: params[:page])
   end
 
+  def advanced_search
+    @search = ransack_params
+    @search.build_grouping unless @search.groupings.any?
+    @users  = ransack_result
+  end
+	
+	
+	
   # GET /treasurers/1
   def show
   end

@@ -2,3 +2,16 @@
 {
 	display:none;
 }
+
+.showprofile .form-label{
+	font-weight: bold;
+}
+
+.showprofile .form-label span{
+	font-weight: normal;
+	margin-left:20px;
+}
+
+.showprofile .form-group:nth-child(2n){
+	background-color: lightgray;
+}

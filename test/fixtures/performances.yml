@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  who_came: MyString
+  who_counted: MyString
+  when_counted: MyString
+  when_paid: MyString
+  who_paid: MyString
+
+two:
+  who_came: MyString
+  who_counted: MyString
+  when_counted: MyString
+  when_paid: MyString
+  who_paid: MyString

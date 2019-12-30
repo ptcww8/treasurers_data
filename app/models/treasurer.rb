@@ -21,6 +21,10 @@ class Treasurer < ApplicationRecord
 		#image.variant(resize: "250x250", auto_orient: true)
 		image.variant(combine_options: { resize: "250x250>", extent: "250x250", background: "grey", gravity: "center", auto_orient: true})
 	end
+
 	
+  def name_with_initial
+    "#{first_name} #{last_name}"
+  end
 	
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_24_202849) do
+ActiveRecord::Schema.define(version: 2019_12_30_220739) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -31,6 +31,19 @@ ActiveRecord::Schema.define(version: 2019_12_24_202849) do
     t.string "checksum", null: false
     t.datetime "created_at", null: false
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
+  end
+
+  create_table "performances", force: :cascade do |t|
+    t.string "who_came"
+    t.string "who_counted"
+    t.string "when_counted"
+    t.string "when_paid"
+    t.string "who_paid"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.date "sunday_service"
+    t.integer "branch_id"
+    t.integer "completed_by"
   end
 
   create_table "treasurers", force: :cascade do |t|

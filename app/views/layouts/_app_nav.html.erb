@@ -11,7 +11,7 @@
             <a class="nav-link bg-primary" href="<%= treasurers_path %>">All Treasurers</a>
           </li>
 				<% end %>
-				<% if current_user.treasurer.present? %>
+				<% if current_user.treasurer && current_user.treasurer.id.present?  %>
         <li class="nav-item">
           <a class="nav-link bg-warning" href="<%= treasurer_path(current_user.treasurer.id) %>">Update Treasurer Profile</a>
         </li>

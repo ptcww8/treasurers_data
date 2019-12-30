@@ -1,6 +1,7 @@
 class Treasurer < ApplicationRecord
 	belongs_to :user
 	has_one_attached :image
+	validates :image, attached: true
 	self.per_page = 20
 	serialize :conference, Array
 	serialize :debt, Array

@@ -1,0 +1,2 @@
+class NewTreasurerMailer < ApplicationMailer
+end

@@ -1,0 +1,2 @@
+class NewBranchMailer < ApplicationMailer
+end

@@ -136,8 +136,8 @@ class TreasurersController < ApplicationController
 	
 		def check_admin_access
 
-			redirect_to new_treasurer_path if current_user.treasurer.blank?
-		  redirect_to current_user.treasurer if (current_user.treasurer?)
+			redirect_to new_treasurer_path  and return if current_user.treasurer.blank?
+		  redirect_to current_user.treasurer and return if (current_user.treasurer?)
 	  end
 	
     def check_same_person

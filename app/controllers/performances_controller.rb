@@ -82,6 +82,6 @@ class PerformancesController < ApplicationController
     end
 	
 		def check_admin_head_access
-			head 404 and return if (!current_user.treasurer.treasurer_type.include?("head") && current_user.treasurer?)
+			head 404 and return if (!Treasurer::TREASURER_TYPE.key(current_user.treasurer.treasurer_type).downcase.include?("head") && current_user.treasurer?)
 	  end
 end

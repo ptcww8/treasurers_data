@@ -76,12 +76,9 @@ gem 'devise'
 group :production do
   gem 'pg'
 end
-gem 'tinymce-rails'
 gem 'xmlrpc'
-gem 'gravatar-ultimate'
 gem 'faker'
 gem 'easypiechart'
-gem 'stripe_event'
 gem 'whenever', require: false
 
 gem 'daemons'

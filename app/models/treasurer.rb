@@ -9,7 +9,7 @@ class Treasurer < ApplicationRecord
 	validates_presence_of :first_name, :last_name, :date_of_birth, :branch_id, :council, :whatsapp_number, :education_level, :ud_join, :year_treasurer, :treasurer_type, :tithe
 	validates_inclusion_of :employment_status, :bishop_podcast, :born_again, :in => [true, false]
 	EDUCATION = ["primary","secondary", "bachelors","master","doctorate"]
-  TREASURER_TYPE = ["principal treasurer","head treasurer","assistant head treasurer"]
+  TREASURER_TYPE = ["principal treasurer","head treasurer","assistant treasurer"]
 	DEBT_OBLIGATION = ["mortgage","car loan","school loan", "alimony", "child support", "other(please explain)"]
 	
 	def image_resized
@@ -23,7 +23,7 @@ class Treasurer < ApplicationRecord
 	end
 
 	
-  def name_with_initial
+  def full_name
     "#{first_name} #{last_name}"
   end
 	

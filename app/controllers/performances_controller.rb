@@ -2,10 +2,17 @@ class PerformancesController < ApplicationController
   layout "scaffold"
 
   before_action :set_performance, only: [:show, :edit, :update, :destroy]
+	before_action :check_admin_head_access
 
   # GET /performances
   def index
-    @performances = Performance.all
+		if current_user.admin?
+			@performances = Performance.all.order(sunday_service: :desc)
+		elsif current_user.principal_treasurer?
+			@performances = Performance.where(branch_id: current_user.treasurer.branch_id).order(sunday_service: :desc)
+		else
+      @performances = Performance.where(branch_id: current_user.treasurer.branch_id).order(sunday_service: :desc)
+		end
 		@treasurers = Treasurer.where(branch_id:current_user.treasurer.branch_id)
   end
 
@@ -22,12 +29,20 @@ class PerformancesController < ApplicationController
 
   # GET /performances/1/edit
   def edit
+		@performances = Performance.where(branch_id: current_user.treasurer.branch_id)
+		@treasurers = Treasurer.where(branch_id: current_user.treasurer.branch_id)
   end
 
   # POST /performances
   def create
     @performance = Performance.new(performance_params)
-
+		@treasurers = Treasurer.where(branch_id: current_user.treasurer.branch_id)
+		@performance.who_came = params[:performance][:who_came]
+		@performance.who_counted = params[:performance][:who_counted]
+		@performance.branch_id = current_user.treasurer.branch_id
+		@performance.completed_by = current_user.id
+		
+		
     if @performance.save
       redirect_to @performance, notice: 'Performance was successfully created.'
     else
@@ -37,7 +52,12 @@ class PerformancesController < ApplicationController
 
   # PATCH/PUT /performances/1
   def update
+		@treasurers = Treasurer.where(branch_id: current_user.treasurer.branch_id)
     if @performance.update(performance_params)
+		  @performance.who_came = params[:performance][:who_came]
+		  @performance.who_counted = params[:performance][:who_counted]
+		  @performance.completed_by = current_user.id
+			@performance.save
       redirect_to @performance, notice: 'Performance was successfully updated.'
     else
       render :edit
@@ -58,6 +78,10 @@ class PerformancesController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def performance_params
-      params.require(:performance).permit(:who_came, :who_counted, :when_counted, :when_paid, :who_paid)
+      params.require(:performance).permit(:service_type, :when_paid, :when_counted, :who_paid, :deposit_date, :sunday_service)
     end
+	
+		def check_admin_head_access
+			head 404 and return if (!current_user.treasurer.treasurer_type.include?("head") && current_user.treasurer?)
+	  end
 end

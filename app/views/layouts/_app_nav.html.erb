@@ -15,9 +15,11 @@
         <li class="nav-item">
           <a class="nav-link bg-warning" href="<%= treasurer_path(current_user.treasurer.id) %>">Update Treasurer Profile</a>
         </li>
+				<% if (current_user.treasurer.treasurer_type.include?("head") || current_user.admin? || current_user.principal_treasurer?) %>
 				<li class="nav-item">
-            <a class="nav-link bg-info" href="<%= new_performance_path %>">Complete Questionnaire</a>
+            <a class="nav-link bg-info" href="<%= performances_path %>">Complete Questionnaire</a>
         </li>
+				<% end %>
 				<% else%>
 	        <li class="nav-item">
           <a class="nav-link bg-warning" href="<%= new_treasurer_path %>">Update Treasurer Profile</a>

@@ -15,3 +15,8 @@
 .showprofile .form-group:nth-child(2n){
 	background-color: lightgray;
 }
+
+.expectation li,.expectation span{
+	color: red;
+	
+}

@@ -27,17 +27,10 @@ production:
 
 global:
   adapter: sqlserver
-  database: "xxx"
-  username: "xxx"
+  database: "GlobalAttendanceDataDB"
+  username: "xxx@xxx.database.windows.net"
   password: "xxx"
-  host: "xxx"
+  host: "cioreportsrv.database.windows.net"
   port: "1433"
   mode: :dblib
-
-abs:
-  adapter: mysql
-  database: "abs_db"
-  username: "root"
-  password: "xxx"
-  host: "localhost"
-  port: "3306"
+  azure: true

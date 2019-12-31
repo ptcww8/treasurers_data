@@ -68,7 +68,7 @@
                           <div class="form-group row">
                 <label class="col-12 col-md-12 form-label">Branch:
                   <span>
-                    <%= @treasurer.branch_id %>
+                    <%= BranchConnection.find_by_UDBRANCHID(@treasurer.branch_id).BRANCH if @treasurer.branch_id && @treasurer.branch_id.to_i > 0 %>
                   </span>
                 </label>
               </div>
@@ -76,7 +76,7 @@
               <div class="form-group row">
                 <label class="col-12 col-md-12 form-label">Council:
                   <span>
-                    <%= @treasurer.council %>
+                    <%= CouncilConnection.find_by_COUNCILID(@treasurer.council).COUNCIL if @treasurer.council && @treasurer.council.to_i > 0 %>
                   </span>
                 </label>
               </div>

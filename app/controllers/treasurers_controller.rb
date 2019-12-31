@@ -31,10 +31,27 @@ class TreasurersController < ApplicationController
   def new
 		head 404 and return if current_user.treasurer.present?
     @treasurer = Treasurer.new
+		@councils = CouncilConnection.where(COUNCILSTATUS: "ACTIVE").order(COUNCIL: :asc)
+		@branches = BranchConnection.where(BRANCHSTATUS: "ACTIVE", COUNCIL: CouncilConnection.first.COUNCIL).order(BRANCH: :asc)
   end
+	
+	def pull_branches
+		@branches = BranchConnection.where(BRANCHSTATUS: "ACTIVE", COUNCIL: params[:council]).uniq
+		branch_data = []
+		@branches.map do |branch|
+			branch_data << {:branch_id => branch.UDBRANCHID, :branch_name => branch.BRANCH}
+		end
+		render json: branch_data.as_json 
+		
+  end
+	
 
   # GET /treasurers/1/edit
   def edit
+		@councils = CouncilConnection.where(COUNCILSTATUS: "ACTIVE").order(COUNCIL: :asc)
+		@council = CouncilConnection.find_by_COUNCILID(@treasurer.council)
+		@branches = BranchConnection.where(BRANCHSTATUS: "ACTIVE", COUNCIL: @council.COUNCIL).order(BRANCH: :asc) if @council
+		@branches = BranchConnection.where(BRANCHSTATUS: "ACTIVE", COUNCIL: CouncilConnection.first.COUNCIL).order(BRANCH: :asc) unless @council
   end
 
   # POST /treasurers

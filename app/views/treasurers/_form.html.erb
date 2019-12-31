@@ -34,19 +34,19 @@
         <%= f.error_messages %>
       </div>
     <% end %>
-
-    <%= f.form_group :branch_id, class: 'row' do |f| %>
-      <%= f.label :branch_id, class: 'control-label col-md-12' %>
-      <div class='col-12 col-md-10'>
-        <%= f.number_field :branch_id, class: 'form-control' %>
-        <%= f.error_messages %>
-      </div>
-    <% end %>
-
     <%= f.form_group :council, class: 'row' do |f| %>
       <%= f.label :council, class: 'control-label col-md-12' %>
       <div class='col-12 col-md-10'>
-        <%= f.text_field :council, class: 'form-control' %>
+				<%= f.select :council, options_from_collection_for_select(@councils, :COUNCILID, :COUNCIL, @treasurer.council ? @treasurer.council : ""), {}, class: 'form-control' %>
+        <%= f.error_messages %>
+      </div>
+    <% end %>
+		
+		
+    <%= f.form_group :branch_id, class: 'row' do |f| %>
+      <%= f.label :branch_id, class: 'control-label col-md-12' %>
+      <div class='col-12 col-md-10' id="branch_data">
+				<%= f.select :branch_id, options_from_collection_for_select(@branches, :UDBRANCHID, :BRANCH, @treasurer.branch_id ? @treasurer.branch_id : ""), {}, class: 'form-control' %>
         <%= f.error_messages %>
       </div>
     <% end %>

@@ -27,4 +27,17 @@ class Treasurer < ApplicationRecord
     "#{first_name} #{last_name}"
   end
 	
+	def self.pull_branches
+		client = TinyTds::Client.new(username: "pbiappuser@cioreportsrv.database.windows.net", password: "udappuser514!", host: "cioreportsrv.database.windows.net", database: "GlobalAttendanceDataDB", azure: true , port: "1433")
+		
+		puts "Reading data from table"
+    tsql = "SELECT TOP 1 * from EDW_UDBRANCHES"
+    result = client.execute(tsql)
+    result.each do |row|
+      puts row
+    end
+		
+		
+	end
+	
 end

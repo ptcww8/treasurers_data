@@ -13,7 +13,7 @@
 						<b>Council: </b><%= treasurer.council %><br>
 				 <b>Whatsapp #: <br></b><%= treasurer.whatsapp_number %><br>
 				 <b>Treasurer from: </b><%= treasurer.year_treasurer.year %><br>
-				 <b>Type of Treasurer:<br> </b><%= treasurer.treasurer_type %><br>
+				 <b>Type of Treasurer:<br> </b><%= Treasurer::TREASURER_TYPE.key(treasurer.treasurer_type) %><br>
 
 						</p>
 					</div>

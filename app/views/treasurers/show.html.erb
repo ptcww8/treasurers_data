@@ -148,7 +148,7 @@
                           <div class="form-group row">
                 <label class="col-12 col-md-12 form-label">Treasurer type:
                   <span>
-                    <%= @treasurer.treasurer_type %>
+                    <%= Treasurer::TREASURER_TYPE.key(@treasurer.treasurer_type) %>
                   </span>
                 </label>
               </div>

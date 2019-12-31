@@ -20,7 +20,7 @@
                 <label class="col-12 col-md-12 form-label">Which treasurers came to church?</label>
                 <div class="col-12 col-md-9">
                   <span>
-                    <%= raw Treasurer.where(id: @performance.who_came.map(&:to_i)).map{|tres| tres.full_name}.join(", ") %>
+                    <%= Treasurer.where(id: @performance.who_came.map(&:to_i)).map{|tres| tres.full_name}.join(", ") %>
                   </span>
                 </div>
               </div>
@@ -29,7 +29,7 @@
                 <label class="col-12 col-md-12 form-label">Which treasurers counted?</label>
                 <div class="col-12 col-md-10">
                   <span>
-                    <%= raw Treasurer.where(id: @performance.who_counted.map(&:to_i)).map{|tres| tres.full_name}.join(", ") %>
+                    <%= Treasurer.where(id: @performance.who_counted.map(&:to_i)).map{|tres| tres.full_name}.join(", ") %>
                   </span>
                 </div>
               </div>
@@ -56,7 +56,7 @@
                 <label class="col-12 col-md-4 form-label">Who paid to the bank?</label>
                 <div class="col-12 col-md-8">
                   <span>
-                    <%= User.find_by_id(@performance.who_paid).treasurer.full_name %>
+                    <%= Treasurer.find_by_id(@performance.who_paid).full_name %>
                   </span>
                 </div>
               </div>

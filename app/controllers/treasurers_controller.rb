@@ -31,8 +31,8 @@ class TreasurersController < ApplicationController
   def new
 		head 404 and return if current_user.treasurer.present?
     @treasurer = Treasurer.new
-		@councils = CouncilConnection.where(COUNCILSTATUS: "ACTIVE").order(COUNCIL: :asc)
-		@branches = BranchConnection.where(BRANCHSTATUS: "ACTIVE", COUNCIL: CouncilConnection.first.COUNCIL).order(BRANCH: :asc)
+		@councils = BranchConnection.where(BRANCHSTATUS: "ACTIVE").order(COUNCIL: :asc).pluck(:COUNCIL).uniq
+		@branches = BranchConnection.where(BRANCHSTATUS: "ACTIVE", COUNCIL: CouncilConnection.first.COUNCIL).order(BRANCH: :asc).pluck(:BRANCH)
   end
 	
 	def pull_branches
@@ -48,10 +48,9 @@ class TreasurersController < ApplicationController
 
   # GET /treasurers/1/edit
   def edit
-		@councils = CouncilConnection.where(COUNCILSTATUS: "ACTIVE").order(COUNCIL: :asc)
-		@council = CouncilConnection.find_by_COUNCILID(@treasurer.council)
-		@branches = BranchConnection.where(BRANCHSTATUS: "ACTIVE", COUNCIL: @council.COUNCIL).order(BRANCH: :asc) if @council
-		@branches = BranchConnection.where(BRANCHSTATUS: "ACTIVE", COUNCIL: CouncilConnection.first.COUNCIL).order(BRANCH: :asc) unless @council
+		@councils = BranchConnection.where(BRANCHSTATUS: "ACTIVE").order(COUNCIL: :asc).pluck(:COUNCIL).uniq
+		@branches = BranchConnection.where(BRANCHSTATUS: "ACTIVE", COUNCIL: @treasurer.council).order(BRANCH: :asc).pluck(:BRANCH) if @treasurer.council
+		@branches = BranchConnection.where(BRANCHSTATUS: "ACTIVE", COUNCIL: CouncilConnection.first.COUNCIL).order(BRANCH: :asc).pluck(:BRANCH) unless @treasurer.council
   end
 
   # POST /treasurers

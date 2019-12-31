@@ -17,7 +17,7 @@ $(document).ready(function(){
 			table_data = "<select class='form-control' name='treasurer[branch_id]' id='treasurer_branch_id'>"
 			for (var i = 0; i < data.length; i++) {
 
-          table_data = table_data + "<option value=\'"+data[i].branch_id+"\'>"+data[i].branch_name+"</option>"
+          table_data = table_data + "<option value=\'"+data[i].branch_name+"\'>"+data[i].branch_name+"</option>"
        
        }
 			table_data = table_data + "</select>"

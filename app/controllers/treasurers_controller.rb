@@ -36,7 +36,7 @@ class TreasurersController < ApplicationController
   end
 	
 	def pull_branches
-		@branches = BranchConnection.where(BRANCHSTATUS: "ACTIVE", COUNCIL: params[:council]).uniq
+		@branches = BranchConnection.where(BRANCHSTATUS: "ACTIVE", COUNCIL: params[:council]).order(BRANCH: :asc).uniq
 		branch_data = []
 		@branches.map do |branch|
 			branch_data << {:branch_id => branch.UDBRANCHID, :branch_name => branch.BRANCH}

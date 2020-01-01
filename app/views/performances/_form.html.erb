@@ -7,7 +7,7 @@
 	 <%= f.form_group :sunday_service, class: 'row' do |f| %>
       <%= f.label "Date of Service", class: 'control-label col-md-3 font-weight-bold' %>
       <div class='col-12 col-md-9'>
-        <%= f.date_select :sunday_service,{}, class: 'form-control', style:"width:30%; display:inline" %>
+        <%= f.date_select :sunday_service,{include_blank: true}, class: 'form-control', style:"width:30%; display:inline" %>
         <%= f.error_messages %>
       </div>
     <% end %>
@@ -15,7 +15,7 @@
 		<%= f.form_group :service_type, class: 'row' do |f| %>
       <%= f.label "Type of Service: ", class: 'control-label col-md-12 font-weight-bold' %>
       <div class='col-12 col-md-10'>
-				<%= f.select :service_type, options_for_select(Performance::SERVICE_TYPES, @performance.service_type ? @performance.service_type : ""), {}, class: 'form-control' %>
+				<%= f.select :service_type, options_for_select(Performance::SERVICE_TYPES, @performance.service_type ? @performance.service_type : ""), {include_blank: true}, {class: 'form-control'} %>
         <%= f.error_messages %>
       </div>
     <% end %>
@@ -59,7 +59,7 @@
     <%= f.form_group :when_counted, class: 'row' do |f| %>
       <%= f.label "How long after church did counting start?", class: 'control-label col-md-12 font-weight-bold' %>
       <div class='col-12 col-md-10'>
-				<%= f.select :when_counted, options_for_select(Performance::WHEN_COUNTED, @performance.when_counted ? @performance.when_counted : ""), {}, class: 'form-control' %>
+				<%= f.select :when_counted, options_for_select(Performance::WHEN_COUNTED, @performance.when_counted ? @performance.when_counted : ""), {include_blank: true}, {class: 'form-control'} %>
         <%= f.error_messages %>
       </div>
     <% end %>
@@ -67,7 +67,7 @@
     <%= f.form_group :when_paid, class: 'row' do |f| %>
       <%= f.label "When Was it Paid into the Bank?", class: 'control-label col-md-12 font-weight-bold' %>
       <div class='col-12 col-md-10'>
-				<%= f.select :when_paid, options_for_select(Performance::WHEN_PAID, @performance.when_paid ? @performance.when_paid : ""), {}, class: 'form-control' %>
+				<%= f.select :when_paid, options_for_select(Performance::WHEN_PAID, @performance.when_paid ? @performance.when_paid : ""), {include_blank: true}, {class: 'form-control'} %>
         <%= f.error_messages %>
       </div>
     <% end %>
@@ -75,8 +75,7 @@
     <%= f.form_group :who_paid, class: 'row' do |f| %>
       <%= f.label "Who Paid to the Bank?", class: 'control-label col-md-12 font-weight-bold' %>
       <div class='col-12 col-md-10'>
-        <%#= f.text_field :who_paid, class: 'form-control' %>
-				<%= f.select :who_paid, options_from_collection_for_select(@treasurers, :id, :full_name), {}, class: 'form-control' %>
+				<%= f.select :who_paid, options_from_collection_for_select(@treasurers, :id, :full_name), {include_blank: true}, {class: 'form-control'} %>
         <%= f.error_messages %>
       </div>
     <% end %>
@@ -85,7 +84,7 @@
 	 <%= f.form_group :deposit_date, class: 'row' do |f| %>
       <%= f.label "Please put the date of deposit (Please make sure this tallies with the information on the deposit slip)", class: 'control-label col-md-12 font-weight-bold' %>
       <div class='col-12 col-md-9'>
-        <%= f.date_select :deposit_date,{}, class: 'form-control', style:"width:30%; display:inline" %>
+        <%= f.date_select :deposit_date,{include_blank: true}, class: 'form-control', style:"width:30%; display:inline" %>
         <%= f.error_messages %>
       </div>
     <% end %>

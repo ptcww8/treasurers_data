@@ -39,7 +39,7 @@ class TreasurersController < ApplicationController
 		@branches = BranchConnection.where(BRANCHSTATUS: "ACTIVE", COUNCIL: params[:council]).order(BRANCH: :asc).uniq
 		branch_data = []
 		@branches.map do |branch|
-			branch_data << {:branch_id => branch.UDBRANCHID, :branch_name => branch.BRANCH}
+			branch_data << {:branch_selected => branch.BRANCH == current_user.treasurer.branch_id ? "yes" : "no", :branch_name => branch.BRANCH}
 		end
 		render json: branch_data.as_json 
 		
@@ -55,6 +55,8 @@ class TreasurersController < ApplicationController
 
   # POST /treasurers
   def create
+		@councils = BranchConnection.where(BRANCHSTATUS: "ACTIVE").order(COUNCIL: :asc).pluck(:COUNCIL).uniq
+		@branches = BranchConnection.where(BRANCHSTATUS: "ACTIVE", COUNCIL: CouncilConnection.first.COUNCIL).order(BRANCH: :asc).pluck(:BRANCH)
     @treasurer = current_user.build_treasurer(treasurer_params)
 		if params[:treasurer][:training_manual]
 			@treasurer.training_manual = ActiveModel::Type::Boolean.new.cast(params[:treasurer][:training_manual])
@@ -85,6 +87,8 @@ class TreasurersController < ApplicationController
 
   # PATCH/PUT /treasurers/1
   def update
+		@councils = BranchConnection.where(BRANCHSTATUS: "ACTIVE").order(COUNCIL: :asc).pluck(:COUNCIL).uniq
+		@branches = BranchConnection.where(BRANCHSTATUS: "ACTIVE", COUNCIL: CouncilConnection.first.COUNCIL).order(BRANCH: :asc).pluck(:BRANCH)
 		if params[:treasurer][:training_manual]
 			@treasurer.training_manual = ActiveModel::Type::Boolean.new.cast(params[:treasurer][:training_manual])
 		end

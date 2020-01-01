@@ -26,7 +26,6 @@
                 <% @performances.each do |performance| %>
                   <tr>
 										<td><%= performance.sunday_service.strftime("%A, %b %d") %></td>
-f
 										<td><%= raw Treasurer.where(id: performance.who_counted.map(&:to_i)).map{|tres| tres.full_name}.join("<br>") %></td>
 										<td><%= Performance::WHEN_COUNTED.key(performance.when_counted) %></td>
 										<td><%= Performance::WHEN_PAID.key(performance.when_paid) %></td>

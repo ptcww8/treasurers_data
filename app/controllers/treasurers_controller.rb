@@ -39,7 +39,7 @@ class TreasurersController < ApplicationController
 		@branches = BranchConnection.where(BRANCHSTATUS: "ACTIVE", COUNCIL: params[:council]).order(BRANCH: :asc).uniq
 		branch_data = []
 		@branches.map do |branch|
-			branch_data << {:branch_selected => branch.BRANCH == current_user.treasurer.branch_id ? "yes" : "no", :branch_name => branch.BRANCH}
+			branch_data << {:branch_selected => current_user.treasurer && branch.BRANCH == current_user.treasurer.branch_id ? "yes" : "no", :branch_name => branch.BRANCH}
 		end
 		render json: branch_data.as_json 
 		

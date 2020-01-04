@@ -29,7 +29,7 @@
 										<td><%= raw Treasurer.where(id: performance.who_counted.map(&:to_i)).map{|tres| tres.full_name}.join("<br>") %></td>
 										<td><%= Performance::WHEN_COUNTED.key(performance.when_counted) %></td>
 										<td><%= Performance::WHEN_PAID.key(performance.when_paid) %></td>
-										<td><%= Treasurer.find_by_id(performance.who_paid).full_name %></td>
+										<td><%= Treasurer.find_by_id(performance.who_paid.to_i).full_name %></td>
 										<td><%= User.find_by_id(performance.completed_by).treasurer.full_name %></td>
 									<td class="actions text-right">
                       <div class="btn-group">

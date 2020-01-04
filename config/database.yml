@@ -27,10 +27,10 @@ production:
 
 global:
   adapter: sqlserver
-  database: "GlobalAttendanceDataDB"
-  username: "pbiappuser@cioreportsrv.database.windows.net"
-  password: "udappuser514!"
-  host: "cioreportsrv.database.windows.net"
+  database: "xxx"
+  username: "xxx"
+  password: "xxx"
+  host: "xxx"
   port: "1433"
   mode: :dblib
   azure: true

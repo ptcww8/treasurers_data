@@ -28,8 +28,8 @@ production:
 global:
   adapter: sqlserver
   database: "GlobalAttendanceDataDB"
-  username: "xxx@xxx.database.windows.net"
-  password: "xxx"
+  username: "pbiappuser@cioreportsrv.database.windows.net"
+  password: "udappuser514!"
   host: "cioreportsrv.database.windows.net"
   port: "1433"
   mode: :dblib

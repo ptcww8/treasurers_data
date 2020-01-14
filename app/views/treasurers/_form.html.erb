@@ -30,7 +30,7 @@
     <%= f.form_group :date_of_birth, class: 'row' do |f| %>
       <%= f.label :date_of_birth, class: 'control-label col-md-12' %>
       <div class='col-12 col-md-10'>
-        <%= f.date_select :date_of_birth,{start_year:1960, end_year: Date.today.year - 18, include_blank: true}, class: 'form-control',style: "width:20%; display:inline" %>
+        <%= f.date_select :date_of_birth,{start_year:1950, end_year: Date.today.year - 18, include_blank: true}, class: 'form-control',style: "width:20%; display:inline" %>
         <%= f.error_messages %>
       </div>
     <% end %>

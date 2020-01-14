@@ -65,7 +65,7 @@
     <% end %>
 
     <%= f.form_group :when_paid, class: 'row' do |f| %>
-      <%= f.label "When Was it Paid into the Bank?", class: 'control-label col-md-12 font-weight-bold' %>
+      <%= f.label "When was it paid into the bank or sent via mobile money or paid to Council Treasurer?", class: 'control-label col-md-12 font-weight-bold' %>
       <div class='col-12 col-md-10'>
 				<%= f.select :when_paid, options_for_select(Performance::WHEN_PAID, @performance.when_paid ? @performance.when_paid : ""), {include_blank: true}, {class: 'form-control'} %>
         <%= f.error_messages %>
@@ -73,7 +73,7 @@
     <% end %>
 
     <%= f.form_group :who_paid, class: 'row' do |f| %>
-      <%= f.label "Who Paid to the Bank?", class: 'control-label col-md-12 font-weight-bold' %>
+      <%= f.label "Who paid to the bank/ sent via mobile money/ sent to Council", class: 'control-label col-md-12 font-weight-bold' %>
       <div class='col-12 col-md-10'>
 				<%= f.select :who_paid, options_from_collection_for_select(@treasurers, :id, :full_name), {include_blank: true}, {class: 'form-control'} %>
         <%= f.error_messages %>

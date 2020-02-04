@@ -1,7 +1,7 @@
 class TreasurersController < ApplicationController
   layout "scaffold"
 
-  before_action :set_treasurer, only: [:show, :edit, :update, :destroy, :toggle_verify,:make_principal_treasurer]
+  before_action :set_treasurer, only: [:show, :edit, :update, :destroy, :toggle_verify,:make_principal_treasurer, :update_comments]
 	before_action :check_admin_access, only: [:index, :destroy,:make_principal_treasurer]
 	before_action :check_same_person, only: [:show, :edit, :update]
 
@@ -139,6 +139,14 @@ class TreasurersController < ApplicationController
 		elsif @treasurer.user.treasurer?
 			@treasurer.user.principal_treasurer!
 		end		
+		redirect_to @treasurer, notice: 'This treasurer is a principal treasurer now. They have admin privileges for their council'	
+		
+	end
+
+	
+	def update_comments	
+		head 404 and return if current_user.treasurer?
+		@treasurer.update_attributes(comments: params[:comments], verified: !@treasurer.verified)	
 		redirect_to @treasurer, notice: 'This treasurer is a principal treasurer now. They have admin privileges for their council'	
 		
 	end

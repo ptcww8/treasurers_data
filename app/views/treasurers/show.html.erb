@@ -9,12 +9,30 @@
 			</div>
 </div>
 
-	 <div class="modal fade" id="verifyform" tabindex="-1" role="dialog" aria-labelledby="PayForCredits" aria-hidden="true">
+<div class="modal fade" id="verifyform" tabindex="-1" role="dialog" aria-labelledby="PayForCredits" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-body" style="overflow:auto">
-         <div class='col-12 col-md-10'>
-				Leave Comments
+         <div class='col-12 col-md-12'>
+				<%= form_with url: update_comments_path, local: true, html: { class: 'form-horizontal' } do |f| %>
+  				<%= f.error_notification %>
+
+						<div class="form-inputs">
+							<%= f.form_group :comments, class: 'row' do |f| %>
+								<%= f.label :comments, class: 'control-label col-md-12' %>
+								<div class='col-12 col-md-12'>
+									<%= text_area_tag "comments",@treasurer.comments, class: 'form-control', rows:"10" %>
+									<%= f.error_messages %>
+								</div>
+							<% end %>
+						</div>
+						<div class="d-flex">
+							<div class="ml-auto">
+								<%= f.submit "Request More Information", class: 'btn btn-warning' %>
+								<%= link_to "Cancel", "#", "data-dismiss":"modal", class: 'btn btn-outline-default' %>
+							</div>
+						</div>
+					 <% end %>
       </div>       
       </div>
     </div>
@@ -24,11 +42,16 @@
   <div class="row">
 		<div class="col-12 col-md-4">
 			<%= image_tag @treasurer.image_resized, width: '100%', class:"card-img-top", alt:"#{@treasurer.first_name} #{@treasurer.last_name}" if @treasurer.image.attached? %>
+			<br>
+			Comments:
+			<p>
+				<%= @treasurer.comments if @treasurer.comments.present?%>
+			</p>
 			
 		</div>
     <div class="col-12 col-md-8">
-							<h3 class= "<%=@treasurer.verified ? 'text-success' : 'text-danger' %>">
-					<%= @treasurer.verified ? "Treasurer Information has been verified" : "Treasurer Information is not verified yet" %>
+							<h3 class= "text-center <%=@treasurer.verified ? 'text-success' : 'text-danger' %>">
+					<%= @treasurer.verified ? "This Information has been verified" : "This Information has not been verified yet by a Principal Treasurer" %>
 				</h3>
       <div class="card">
         <div class="card-body showprofile">
@@ -162,9 +185,12 @@
                   </span>
                 </label>
               </div>
+					<p class="bg-danger text-white">
+						The last four questions below are completed by the Principal Treasurer only
+					</p>
 
-                          <div class="form-group row">
-                <label class="col-12 col-md-12 form-label">Conferences Attended: 
+              <div class="form-group row">
+                <label class="col-12 col-md-12 form-label">Training Conferences Completed: 
                   <span>
                     <%= @treasurer.conference.join(", ") if @treasurer.conference.present? %>
                   </span>
@@ -199,7 +225,8 @@
 					
                         <div class="d-flex">
               <div class="ml-auto">
-								<%= link_to @treasurer.verified ? "Request More Information" : "Complete Verification",verify_treasurer_path, class:"btn #{@treasurer.verified ? 'bg-warning' : 'bg-success'} #{@treasurer.verified ? 'verify_btn' : ''}" unless current_user.treasurer? %>
+								<%= link_to "Request More Information", verify_treasurer_path, id:"verify_btn", class:"btn bg-warning" unless current_user.treasurer? %>
+								<%= link_to "Complete Verification", verify_treasurer_path, class:"btn bg-success" if (!current_user.treasurer? && !@treasurer.verified) %>
                 <%= link_to fa_icon_tag("pencil") + ' Edit', edit_treasurer_path(@treasurer), class: 'btn btn-primary' %>
                 <%= link_to 'Back', treasurers_path, class: 'btn' unless current_user.treasurer? %>
 								<%= link_to theme_icon_tag("trash"), @treasurer, 'data-toggle': 'tooltip', title: 'Delete',

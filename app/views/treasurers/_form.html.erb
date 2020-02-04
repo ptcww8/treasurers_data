@@ -120,7 +120,8 @@
     <%= f.form_group :treasurer_type, class: 'row' do |f| %>
       <%= f.label :treasurer_type, class: 'control-label col-md-12' %>
       <div class='col-12 col-md-10'>
-				<%= f.select :treasurer_type, options_for_select(Treasurer::TREASURER_TYPE, @treasurer.treasurer_type ? @treasurer.treasurer_type : ""), {include_blank: true}, {class: 'form-control'} %>
+				<%= f.select :treasurer_type, options_for_select(Treasurer::TREASURER_TYPE, @treasurer.treasurer_type ? @treasurer.treasurer_type : ""), {include_blank: true}, {class: 'form-control'} if current_user.admin? %>
+				<%= f.select :treasurer_type, options_for_select(Treasurer::TREASURER_TYPE_NO_ADMIN, @treasurer.treasurer_type ? @treasurer.treasurer_type : ""), {include_blank: true}, {class: 'form-control'} unless current_user.admin? %>
         <%= f.error_messages %>
       </div>
     <% end %>
@@ -149,7 +150,7 @@
 		
 <% unless current_user.treasurer? %>
     <%= f.form_group :conference, class: 'row' do |f| %>
-      <%= f.label "Which Conferences Have You Attended?", class: 'control-label col-md-12' %>
+      <%= f.label "Which Training Conferences Have You Completed?", class: 'control-label col-md-12' %>
       <div class=' ml-3 col-12 col-md-10 border border-primary border-rounded p-2'>
 				<%  (2019..Date.today.year).to_a.uniq.each do |year| %>
 

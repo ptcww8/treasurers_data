@@ -26,13 +26,13 @@
 
                 <%= f.form_group :password, class: "row" do |f| %>
                   <%= f.label :password, class: "form-label" %>
-                  <%= f.password_field :password, class: "form-control" %>
+                  <%= f.password_field :password, class: "form-control", "data-toggle":'password' %>
                   <%= f.error_messages %>
                 <% end %>
 
                 <%= f.form_group :password_confirmation, class: "row" do |f| %>
                   <%= f.label :password_confirmation, class: "form-label" %>
-                  <%= f.password_field :password_confirmation, class: "form-control" %>
+                  <%= f.password_field :password_confirmation, class: "form-control", "data-toggle":'password' %>
                   <%= f.error_messages %>
                 <% end %>
 

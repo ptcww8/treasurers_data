@@ -6,7 +6,8 @@
       <header class="text-center">
         <h1><%=app_name%></h1>
         <p class="p-0 m-0 text-uppercase">Login</p>
-				<p class="bg-danger text-white m-2">If it is your first time, click on Sign Up and confirm a valid email address</p>
+				<p class="bg-danger text-white m-2">For first time users use Sign Up and confirm a valid email address <br><br>For all others use login in</p>
+
       </header>
     </div>
     <div class="row mt-5">
@@ -36,7 +37,7 @@
 
                 <%= f.form_group :password, class: "row" do |f| %>
                   <%= f.label :password, class: "form-label" %>
-                  <%= f.password_field :password, class: "form-control" %>
+                  <%= f.password_field :password, class: "form-control", "data-toggle":'password' %>
                   <%= f.error_messages %>
                 <% end %>
 

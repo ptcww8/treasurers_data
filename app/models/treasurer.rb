@@ -11,6 +11,7 @@ class Treasurer < ApplicationRecord
  
 	EDUCATION = ["primary","secondary", "bachelors","master","doctorate"]
   TREASURER_TYPE = {"Principal treasurer"=> "0","Head treasurer"=> "1","Assistant treasurer"=>"2"}
+	TREASURER_TYPE_NO_ADMIN = {"Head treasurer"=> "1","Assistant treasurer"=>"2"}
 	DEBT_OBLIGATION = ["mortgage","car loan","school loan", "alimony", "child support", "other(please explain)"]
 	
 	def image_resized

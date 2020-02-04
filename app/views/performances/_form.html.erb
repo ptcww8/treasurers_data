@@ -57,7 +57,7 @@
     <% end %>
 
     <%= f.form_group :when_counted, class: 'row' do |f| %>
-      <%= f.label "How long after church did counting start?", class: 'control-label col-md-12 font-weight-bold' %>
+      <%= f.label "When did counting start after your service?", class: 'control-label col-md-12 font-weight-bold' %>
       <div class='col-12 col-md-10'>
 				<%= f.select :when_counted, options_for_select(Performance::WHEN_COUNTED, @performance.when_counted ? @performance.when_counted : ""), {include_blank: true}, {class: 'form-control'} %>
         <%= f.error_messages %>

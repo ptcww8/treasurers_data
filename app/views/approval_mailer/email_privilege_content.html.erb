@@ -1,0 +1,29 @@
+<%= email_message_section do %>
+  <%= email_message_spacer 2 %>
+
+  <%= email_message_body_text do %>
+    Hello <%= @treasurer.full_name %>  <br>
+<% if @treasurer.user.principal_treasurer? %>
+This is to confirm that you are now a Principal Treasurer
+<% end %>
+
+<% if @treasurer.user.treasurer? %>
+	This is to confirm that you have lost your Principal Treasurer privileges
+<% end %>
+
+
+  <% end %>
+
+<% if @treasurer.user.principal_treasurer? %>
+  <%= email_message_button do %>
+        <%= link_to "See All Treasurers In Council", treasurers_url, style: 'color: #fff;' %>
+  <% end %>
+<% end %>
+  <%= email_message_spacer 2 %>
+
+  <%= email_message_small_text do %>
+    Any questions? Just email us.
+  <% end %>
+
+  <%= email_message_spacer 2 %>
+<% end %> 

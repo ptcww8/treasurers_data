@@ -1,0 +1,35 @@
+<%= email_message_section do %>
+  <%= email_message_spacer 2 %>
+<% if @approve %>
+  <%= email_message_body_text do %>
+    Hello <%= @treasurer.full_name %>  <br>
+This is to confirm that your information has been approved and so your profile is now complete
+  <% end %>
+
+<%= email_message_spacer 2 %>
+
+  <%= email_message_body_text do %>
+    <span style="color:red;">Remember if you are a Head Treasurer, come to this website every Sunday to complete the Questionnaire after money is deposited or transferred via mobile money</span>
+  <% end %>
+<% else %>
+
+  <%= email_message_body_text do %>
+    Hello <%= @treasurer.full_name %>  <br>
+Your profile was not approved. You have wrong information. This is the comments below from the Principal Treasurer
+<span style="padding: 10px; border:1px solid red; background-color: lightgray; display:block; margin: 10px;"><%= @treasurer.comments%></span>
+  <% end %>
+
+
+<% end %>
+  <%= email_message_button do %>
+        <%= link_to "Go To Treasurer Information", treasurer_url(@treasurer.id), style: 'color: #fff;' %>
+  <% end %>
+
+  <%= email_message_spacer 2 %>
+
+  <%= email_message_small_text do %>
+    Any questions? Just email us.
+  <% end %>
+
+  <%= email_message_spacer 2 %>
+<% end %> 

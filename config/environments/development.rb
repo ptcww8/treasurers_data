@@ -60,7 +60,7 @@ Rails.application.configure do
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
 	config.action_mailer.default_url_options = { host: "https://railsclass1-2-princetituscodjoe899265.codeanyapp.com" }
 	
-	config.action_mailer.delivery_method = :smtp
+	config.action_mailer.delivery_method = :letter_opener
   config.action_mailer.smtp_settings = {
       address:              "smtp.sendgrid.net",
       port:                 587,

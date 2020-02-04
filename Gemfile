@@ -55,6 +55,7 @@ group :development do
   gem 'capistrano-bundler', require: false
   gem 'capistrano3-puma',   require: false
 	gem 'capistrano3-delayed-job', '~> 1.0'
+	gem 'letter_opener_web', '~> 1.0'
 end
 
 group :test do

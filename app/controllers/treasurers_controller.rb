@@ -79,6 +79,8 @@ class TreasurersController < ApplicationController
 		@treasurer.debt = params[:treasurer][:debt]
 		
     if @treasurer.save
+			ApprovalMailer.send_notification_to_principal(treasurer_id: @treasurer.id).deliver_now
+			ApprovalMailer.send_notification_to_treasurer(treasurer_id: @treasurer.id).deliver_now
       redirect_to @treasurer, notice: 'Treasurer Information was successfully captured.'
     else
       render :new
@@ -127,7 +129,8 @@ class TreasurersController < ApplicationController
 
   def toggle_verify
 		head 404 and return if current_user.treasurer?
-		if @treasurer.update_attributes(verified: !@treasurer.verified)
+		if @treasurer.update_attributes(verified: true)
+			ApprovalMailer.send_notification_after_approving(treasurer_id: @treasurer.id).deliver_now
 			redirect_to @treasurer, notice: 'You successsfully changed verification status of treasurer. An email has been sent'
 		end
   end
@@ -138,7 +141,8 @@ class TreasurersController < ApplicationController
 			@treasurer.user.treasurer!
 		elsif @treasurer.user.treasurer?
 			@treasurer.user.principal_treasurer!
-		end		
+		end
+		ApprovalMailer.notify_of_privileges(treasurer_id: @treasurer.id).deliver_now
 		redirect_to @treasurer, notice: 'This treasurer is a principal treasurer now. They have admin privileges for their council'	
 		
 	end
@@ -146,7 +150,8 @@ class TreasurersController < ApplicationController
 	
 	def update_comments	
 		head 404 and return if current_user.treasurer?
-		@treasurer.update_attributes(comments: params[:comments], verified: !@treasurer.verified)	
+		@treasurer.update_attributes(comments: params[:comments], verified: !@treasurer.verified)
+		ApprovalMailer.send_notification_after_disapproving(treasurer_id: @treasurer.id).deliver_now
 		redirect_to @treasurer, notice: 'This treasurer is a principal treasurer now. They have admin privileges for their council'	
 		
 	end

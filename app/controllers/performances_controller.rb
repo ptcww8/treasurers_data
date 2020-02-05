@@ -57,6 +57,8 @@ class PerformancesController < ApplicationController
 		  @performance.who_came = params[:performance][:who_came]
 		  @performance.who_counted = params[:performance][:who_counted]
 		  @performance.completed_by = current_user.id
+			completed_treasurer = Treasurer.find_by_id(@performance.completed_by)
+			@performance.branch_id = completed_treasurer.branch_id if completed_treasurer.present?
 			@performance.save
       redirect_to @performance, notice: 'Performance was successfully updated.'
     else

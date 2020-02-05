@@ -150,7 +150,7 @@ class TreasurersController < ApplicationController
 	
 	def update_comments	
 		head 404 and return if current_user.treasurer?
-		@treasurer.update_attributes(comments: params[:comments], verified: !@treasurer.verified)
+		@treasurer.update_attributes(comments: params[:comments], verified: false)
 		ApprovalMailer.send_notification_after_disapproving(treasurer_id: @treasurer.id).deliver_now
 		redirect_to @treasurer, notice: 'This treasurer is a principal treasurer now. They have admin privileges for their council'	
 		

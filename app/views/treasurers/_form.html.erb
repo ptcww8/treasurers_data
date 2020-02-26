@@ -93,6 +93,32 @@
       </div>
     <% end %>
 
+    <%= f.form_group :quiet_time, class: 'row' do |f| %>
+      <%= f.label "Do you have your quiet time regularly?", class: 'control-label col-md-12' %>
+      <div class='col-12 col-md-9'>
+        <%= f.check_box :quiet_time, class: 'form-control', 'data-toggle': "toggle", "data-on": "YES", "data-off": "NO", "data-onstyle": "success", "data-offstyle": "danger" %>
+        <%= f.error_messages %>
+      </div>
+    <% end %>
+
+    <%= f.form_group :baptism, class: 'row' do |f| %>
+      <%= f.label "Have you been baptised by immersion?", class: 'control-label col-md-12' %>
+      <div class='col-12 col-md-9'>
+        <%= f.check_box :baptism, class: 'form-control', 'data-toggle': "toggle", "data-on": "YES", "data-off": "NO", "data-onstyle": "success", "data-offstyle": "danger" %>
+        <%= f.error_messages %>
+      </div>
+    <% end %>		
+
+    <%= f.form_group :holy_ghost, class: 'row' do |f| %>
+      <%= f.label "Do you have the Holy Ghost Baptism with the evidence of speaking in tongues?", class: 'control-label col-md-12' %>
+      <div class='col-12 col-md-9'>
+        <%= f.check_box :holy_ghost, class: 'form-control', 'data-toggle': "toggle", "data-on": "YES", "data-off": "NO", "data-onstyle": "success", "data-offstyle": "danger" %>
+        <%= f.error_messages %>
+      </div>
+    <% end %>
+		
+		
+		
     <%= f.form_group :ud_join, class: 'row' do |f| %>
       <%= f.label "When Did you join the UD?", class: 'control-label col-md-12' %>
       <div class='col-12 col-md-10'>

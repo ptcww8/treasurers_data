@@ -164,7 +164,7 @@ class TreasurersController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def treasurer_params
-      params.require(:treasurer).permit(:first_name, :middle_name, :last_name, :date_of_birth, :branch_id, :council, :phone_number, :whatsapp_number, :education_level, :ud_join, :year_treasurer, :treasurer_type, :tithe, :image, :debt_reason)
+      params.require(:treasurer).permit(:first_name, :middle_name, :last_name, :date_of_birth, :branch_id, :council, :phone_number, :whatsapp_number, :education_level, :ud_join, :year_treasurer, :treasurer_type, :tithe, :image, :debt_reason, :quiet_time, :baptism, :holy_ghost)
     end
 	
 		def check_admin_access

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_05_081847) do
+ActiveRecord::Schema.define(version: 2020_02_26_221025) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -75,6 +75,9 @@ ActiveRecord::Schema.define(version: 2020_02_05_081847) do
     t.boolean "verified", default: false
     t.string "debt"
     t.text "debt_reason"
+    t.boolean "holy_ghost"
+    t.boolean "quiet_time"
+    t.boolean "baptism"
   end
 
   create_table "users", force: :cascade do |t|

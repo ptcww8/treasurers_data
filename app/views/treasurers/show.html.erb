@@ -146,7 +146,7 @@
                 </label>
               </div>
 
-                          <div class="form-group row">
+              <div class="form-group row">
                 <label class="col-12 col-md-12 form-label">Are you born again?
                   <span>
                     <%= @treasurer.born_again ? "Yes" : "No" %>
@@ -154,7 +154,30 @@
                 </label>
               </div>
 
-                          <div class="form-group row">
+              <div class="form-group row">
+                <label class="col-12 col-md-12 form-label">Have you been baptised by immersion ?
+                  <span>
+                    <%= @treasurer.baptism ? "Yes" : "No" %>
+                  </span>
+                </label>
+              </div>
+
+              <div class="form-group row">
+                <label class="col-12 col-md-12 form-label">Do you have the Holy Ghost Baptism with the evidence of speaking in tongues?
+                  <span>
+                    <%= @treasurer.holy_ghost ? "Yes" : "No" %>
+                  </span>
+                </label>
+              </div>
+              <div class="form-group row">
+                <label class="col-12 col-md-12 form-label">Do you have your quiet time?
+                  <span>
+                    <%= @treasurer.quiet_time ? "Yes" : "No" %>
+                  </span>
+                </label>
+              </div>
+					
+              <div class="form-group row">
                 <label class="col-12 col-md-12 form-label">When Did you join the UD?
                   <span>
                     <%= @treasurer.ud_join.year %>

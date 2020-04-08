@@ -113,7 +113,7 @@ class PerformancesController < ApplicationController
 		end
 		if params[:question] == "when_deposit"
 			@performances.each do |perf|
-			  @results[perf.branch_id] = @results[perf.branch_id] + 1 if (perf.when_deposit && perf.when_deposit.to_i > 0)
+			  @results[perf.branch_id] = @results[perf.branch_id] + 1 if (perf.when_paid && perf.when_paid.to_i > 0)
 			end
 		end
 		

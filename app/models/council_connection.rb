@@ -45,12 +45,12 @@ class CouncilConnection < ActiveRecord::Base
 	def generate_report(start_date = Date.today.beginning_of_month, end_date = Date.today.end_of_month)
 		
 		principal_treasurers = User.joins(:treasurer).where(treasurers: {COUNCIL:"LOS ANGELES"}, role: User.roles[:principal_treasurer]).pluck(:email)
-		Rails.logger.info "No principal treasurers exist for #{self.COUNCIL}" if principal_treasurers.blank?
+		puts "No principal treasurers exist for #{self.COUNCIL}" if principal_treasurers.blank?
 		who_counted = self.delinquent_who_counted(start_date, end_date)
 		when_counted = self.delinquent_when_counted(start_date, end_date)
 		when_paid = self.delinquent_when_paid(start_date, end_date)
 		
-		return if who_counted.blank? && when_counted.blank? && when_paid.blank?
+		puts "No data to email" and return if who_counted.blank? && when_counted.blank? && when_paid.blank?
 		
 		GenerateMonthlyReportMailer.send_notification_to_principal(emails: principal_treasurers, who_counted: who_counted, when_counted: when_counted, when_paid: when_paid, start_date: start_date, end_date: end_date).deliver_now
 		

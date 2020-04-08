@@ -11,10 +11,17 @@
         <div class="row">
           <div class="col-12 col-md-12">
             <div class="card card-sheet sheet-condensed">
-              <table class="table table-striped table-hover table-responsive-sm">
+							<div class="table-responsive">
+              <table class="table table-striped table-hover">
                 <thead>
                   <tr>
 										<th>Date of Service</th>
+										<% if current_user.admin? %>
+										<th>Council</th>
+										<th>Branch</th>									
+										<% elsif current_user.principal_treasurer?  %>
+										<th>Branch</th>
+										<% end %>
 										<th>Who counted</th>
 										<th>When counted</th>
 										<th>When paid</th>
@@ -27,6 +34,15 @@
                 <% @performances.each do |performance| %>
                   <tr>
 										<td><%= performance.sunday_service.strftime("%A, %b %d") %></td>
+										<% if current_user.admin? %>
+										<% branch = BranchConnection.find_by_BRANCH(performance.branch_id) %>
+										<td><%= branch.COUNCIL if branch %></td>
+										<td><%= performance.branch_id %></td>
+										<% elsif current_user.principal_treasurer?  %>
+										
+										<td><%= performance.branch_id %></td>
+										<% end %>
+
 										<td><%= raw Treasurer.where(id: performance.who_counted.map(&:to_i)).map{|tres| tres.full_name}.join("<br>") %></td>
 										<td><%= Performance::WHEN_COUNTED.key(performance.when_counted) %></td>
 										<td><%= Performance::WHEN_PAID.key(performance.when_paid) %></td>
@@ -47,7 +63,11 @@
                     <% end %>
                     </tbody>
                   </table>
-                </div>
+       
+</div>
+         
+						
+						</div>
 
                                   <%# Remove the trailing if condition if you're using pagination. %>
                   <%= will_paginate @performances if @performances.respond_to?(:total_pages) %>

@@ -4,6 +4,7 @@
     <%= link_to new_performance_path, class: 'btn btn-primary btn-large pull-right' do %>
       <%= fa_icon_tag "plus" %> New Questionnaire
       <% end %>
+		<%= link_to "Query Performances", query_performances_path, class: 'btn btn-success btn-large pull-left' unless current_user.treasurer? %>
       <% end %>
 
       <div class="container">

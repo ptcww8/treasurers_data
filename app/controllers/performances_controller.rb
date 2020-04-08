@@ -9,7 +9,9 @@ class PerformancesController < ApplicationController
 		if current_user.admin?
 			@performances = Performance.all.order(sunday_service: :desc)
 		elsif current_user.principal_treasurer?
-			@performances = Performance.where(branch_id: current_user.treasurer.branch_id).order(sunday_service: :desc)
+			@current_council = params[:council]
+		  @current_branches = BranchConnection.where(BRANCHSTATUS: "ACTIVE", COUNCIL: current_user.treasurer.council).order(BRANCH: :asc).pluck(:BRANCH)
+			@performances = Performance.where(branch_id: @current_branches).order(sunday_service: :desc)
 		else
       @performances = Performance.where(branch_id: current_user.treasurer.branch_id).order(sunday_service: :desc)
 		end
@@ -71,7 +73,59 @@ class PerformancesController < ApplicationController
     @performance.destroy
     redirect_to performances_url, notice: 'Performance was successfully destroyed.'
   end
+	
+	
+	def query
+		pull_council_and_branches
+	end
+	
+	def pull_council_and_branches
+		unless current_user.principal_treasurer?
+		  @councils = BranchConnection.where(BRANCHSTATUS: "ACTIVE").order(COUNCIL: :asc).pluck(:COUNCIL).uniq
+			@branches = BranchConnection.where(BRANCHSTATUS: "ACTIVE", COUNCIL: CouncilConnection.first.COUNCIL).order(BRANCH: :asc).pluck(:BRANCH)
+		else
+			@councils = [current_user.treasurer.council] if current_user.principal_treasurer?
+			@branches = BranchConnection.where(BRANCHSTATUS: "ACTIVE", COUNCIL: current_user.treasurer.council).order(BRANCH: :asc).pluck(:BRANCH)
+		end
+		
+		
+	end
 
+	def postquery
+		@results = Hash.new{0}
+		pull_council_and_branches
+		@current_council = params[:council]
+		@current_branches = BranchConnection.where(BRANCHSTATUS: "ACTIVE", COUNCIL: @current_council).order(BRANCH: :asc).pluck(:BRANCH)
+		@start_date = Date.civil(params["start_date(1i)"].to_i, params["start_date(2i)"].to_i, params["start_date(3i)"].to_i)
+		@end_date = Date.civil(params["end_date(1i)"].to_i, params["end_date(2i)"].to_i, params["end_date(3i)"].to_i)
+		@performances = Performance.where(branch_id: @current_branches, sunday_service: @start_date..@end_date)
+
+		if params[:question] == "treasurer_count"
+			@performances.each do |perf|
+			  @results[perf.branch_id] = @results[perf.branch_id] + 1 unless (perf.who_counted && perf.who_counted.size >=2)	
+			end
+		end
+		
+		if params[:question] == "counting_start"
+			@performances.each do |perf|
+			  @results[perf.branch_id] = @results[perf.branch_id] + 1 if (perf.when_counted && perf.when_counted.to_i >= 4)	
+			end
+		end
+		if params[:question] == "when_deposit"
+			@performances.each do |perf|
+			  @results[perf.branch_id] = @results[perf.branch_id] + 1 if (perf.when_deposit && perf.when_deposit.to_i > 0)
+			end
+		end
+		
+		@final_results = @results.sort_by { |branch, def_times| def_times }
+		debugger
+		
+		render "performances/query"
+		
+	end
+	
+	
+	
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_performance

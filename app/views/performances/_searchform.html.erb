@@ -1,0 +1,53 @@
+<div class="row">
+	<div class="col-md-12 mb-3">
+  <legend>Search Performances</legend>
+  <%= form_with url: query_performances_path, local: true do |f| %>
+	<div class="form-inputs">
+	 <%= f.form_group :council, class: 'row' do |f| %>
+      <%= f.label :council, class: 'control-label col-md-12' %>
+      <div class='col-12 col-md-10'>
+        <%= f.select :council, options_for_select(@councils, params[:council] ? params[:council] : ""), {include_blank: "Select Council"}, {class: 'form-control'} %>
+        <%= f.error_messages %>
+      </div>
+    <% end %>
+		<%= f.form_group :service_type, class: 'row' do |f| %>
+      <%= f.label "Type of Service: ", class: 'control-label col-md-12 font-weight-bold' %>
+      <div class='col-12 col-md-10'>
+				<%= f.select :service_type, options_for_select(Performance::SERVICE_TYPES, params[:service_type] ? params[:service_type] : ""), {include_blank: "Choose Service Type"}, {class: 'form-control'} %>
+        <%= f.error_messages %>
+      </div>
+    <% end %>			
+		
+		<%= f.form_group :start_date, class: 'row' do |f| %>
+      <%= f.label :start_date, class: 'control-label col-md-12' %>
+      <div class='col-12 col-md-10'>
+				<%= f.date_select :start_date,{start_year:2020, end_year: Date.today.year, include_blank: true, selected: @start_date? @start_date : Date.current}, class: 'form-control',style: "width:20%; display:inline" %>
+        <%= f.error_messages %>
+      </div>
+    <% end %>		
+
+		<%= f.form_group :end_date, class: 'row' do |f| %>
+      <%= f.label :end_date, class: 'control-label col-md-12' %>
+      <div class='col-12 col-md-10'>
+        <%= f.date_select :end_date,{start_year:2020, end_year: Date.today.year, include_blank: true, selected: @end_date? @end_date : Date.current}, class: 'form-control',style: "width:20%; display:inline" %>
+        <%= f.error_messages %>
+      </div>
+    <% end %>	
+		
+		<%= f.form_group :question, class: 'row' do |f| %>
+      <%= f.label :question, class: 'control-label col-md-12' %>
+      <div class='col-12 col-md-10'>
+        <%= f.select :question, options_for_select(Performance::QUESTION_TYPES, params[:question] ? params[:question] : ""), {include_blank: true}, {class: 'form-control'} %>
+        <%= f.error_messages %>
+      </div>
+    <% end %>			
+		
+	</div>
+	
+    <div class="actions"><%= f.submit "Search", class: "btn btn-lg btn-primary mt-3" %></div>
+  <% end %>
+
+		
+	</div>
+	
+</div>

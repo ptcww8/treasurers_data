@@ -1,0 +1,15 @@
+<% @title = "Query performances" %>
+  <div class="container">
+    <div class="row">
+      <div id="content" class="col-12 col-md-9">
+        <div class="card card-sheet">
+          <div class="card-body">
+            <%= render "performances/searchform" %>
+          </div>
+        </div>
+      </div>
+    </div>
+		<%= render "performances/tablesearchform" if @final_results %>
+		
+		
+  </div>

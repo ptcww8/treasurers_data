@@ -117,7 +117,7 @@ class PerformancesController < ApplicationController
 			end
 		end
 		
-		@final_results = @results.sort_by { |branch, def_times| def_times }
+		@final_results = @results.sort_by { |branch, def_times| -def_times }
 		
 		render "performances/query"
 		

@@ -14,7 +14,7 @@ class CouncilConnection < ActiveRecord::Base
 		performances.each do |perf|
 		  results[perf.branch_id] = results[perf.branch_id] + 1 unless (perf.who_counted && perf.who_counted.size >=2)	
 		end
-		final_results = results.sort_by { |branch, def_times| def_times }
+		final_results = results.sort_by { |branch, def_times| -def_times }
 		final_results
 	end
 	
@@ -26,7 +26,7 @@ class CouncilConnection < ActiveRecord::Base
 		performances.each do |perf|
 		  results[perf.branch_id] = results[perf.branch_id] + 1 if (perf.when_counted && perf.when_counted.to_i >= 4)
 		end
-		final_results = results.sort_by { |branch, def_times| def_times }
+		final_results = results.sort_by { |branch, def_times| -def_times }
 		final_results
 	end
 	
@@ -37,7 +37,7 @@ class CouncilConnection < ActiveRecord::Base
 		performances.each do |perf|
 		  results[perf.branch_id] = results[perf.branch_id] + 1 if (perf.when_paid && perf.when_paid.to_i > 0)
 		end
-		final_results = results.sort_by { |branch, def_times| def_times }
+		final_results = results.sort_by { |branch, def_times| -def_times }
 		final_results
 	end
 	

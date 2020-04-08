@@ -8,4 +8,6 @@ class Performance < ApplicationRecord
 "BACENTA SUNDAY SERVICE" => "19", "CHRISTMAS SERVICE" => "15", "CONVENTION" => "13", "MIDWEEK SERVICE" => "9", "MINISTRY MEETING" => "10", "NIGHT SCHOOL" => "14", "NO SERVICE" => "18", "PRAYER MEETING" => "11", "SAVED SERVICE" => "21", "CENTER SERVICE" => "0", "SPECIAL SERVICE" => "17", "SUNDAY GATHERING SERVICE" => "12", "SUNDAY SERVICE - MEETING ON A FRIDAY" => "20", "SUNDAY SERVICE - MEETING ON A SATURDAY" => "1", "WATCH NIGHT SERVICE" => "16"}
 
 	QUESTION_TYPES = {"How many treasurers counted?" => "treasurer_count", "When did counting start after service?" => "counting_start", "When was it paid into the bank or sent via mobile money or paid to council treasurer?" => "when_deposit"}
+	
+
 end

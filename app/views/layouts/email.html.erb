@@ -6,6 +6,32 @@
     <title><%= @title || message.subject %></title>
     <style type="text/css">
 
+			#customers {
+				font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+				border-collapse: collapse;
+				width: 100%;
+			}
+
+			#customers td, #customers th {
+				border: 1px solid #ddd;
+				padding: 8px;
+			}
+
+			#customers tr:nth-child(even){background-color: #f2f2f2;}
+
+			#customers tr:hover {background-color: #ddd;}
+
+			#customers th {
+				padding-top: 12px;
+				padding-bottom: 12px;
+				text-align: left;
+				background-color: #4CAF50;
+				color: white;
+			}
+			
+			
+			
+			
       /* Take care of image borders and formatting */
       img     { max-width:600px !important; outline:none; text-decoration:none; -ms-interpolation-mode: bicubic; }
       a img   { border:none; }
@@ -13,13 +39,6 @@
       /* Fix Apple contact links and hide the preheader */
       .applefix a           {color:#888888; text-decoration: none;}
       span[class="preheader"] { display:none; }
-
-      tbody,
-      tr,
-      td {
-        display: block;
-        width: 100%;
-      }
 
       /* Responsive Styles */
       @media only screen and (max-width:600px) {

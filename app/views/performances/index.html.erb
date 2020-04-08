@@ -55,7 +55,7 @@
 									<td class="actions text-right">
                       <div class="btn-group">
                         <%= link_to theme_icon_tag("eye"), performance, 'data-toggle': 'tooltip', title: 'Show', class: "btn btn-link" %>
-                        <%= link_to theme_icon_tag("pencil-alt"), edit_performance_path(performance), 'data-toggle': 'tooltip', title: 'Edit', class: "btn btn-link" %>
+                        <%= link_to theme_icon_tag("pencil-alt"), edit_performance_path(performance), 'data-toggle': 'tooltip', title: 'Edit', class: "btn btn-link" if current_user.treasurer.branch_id == performance.branch_id %>
                         <%= link_to theme_icon_tag("trash"), performance, 'data-toggle': 'tooltip', title: 'Delete',
                         data: { confirm: 'Are you sure?' }, method: :delete, class: 'btn btn-link' if current_user.admin? %>
                       </div>

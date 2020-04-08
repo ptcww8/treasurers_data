@@ -1,0 +1,37 @@
+<%= email_message_section do %>
+  <%= email_message_spacer 2 %>
+
+<% unless @who_counted.blank? %>
+<%= email_message_spacer 2 %>
+<h3> Those who had less than two people counting</h3>
+  <%= email_message_body_text do %>
+		<%= render partial: "table", locals: { final_results: @who_counted } %>
+
+  <% end %>
+<% end %>
+
+<% unless @when_counted.blank? %>
+<%= email_message_spacer 2 %>
+<h3> Those who started counting more than an hour</h3>
+  <%= email_message_body_text do %>
+		<%= render partial: "table", locals: { final_results: @when_counted }  %>
+
+  <% end %>
+<% end %>
+
+<% unless @when_paid.blank?%>
+<%= email_message_spacer 2 %>
+<h3> Those who deposited after more than 24 hours</h3>
+  <%= email_message_body_text do %>
+		<%= render partial: "table", locals: { final_results: @when_paid } %>
+  <% end %>
+<% end %>
+
+  <%= email_message_spacer 2 %>
+
+  <%= email_message_small_text do %>
+    Any questions? Just email us.
+  <% end %>
+
+  <%= email_message_spacer 2 %>
+<% end %> 

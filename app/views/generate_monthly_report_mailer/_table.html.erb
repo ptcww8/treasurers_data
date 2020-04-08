@@ -1,0 +1,17 @@
+<table id="customers">
+	<thead>
+		<tr>
+				<th>Branch</th>
+				<th>Defaulted(times)</th>
+		</tr>
+	</thead>
+	<tbody>
+	<% final_results.each do |fres, def_time| %>
+		<tr>
+				<td><%= fres %></td>
+				<td><%= def_time %></td>
+			</tr>
+	<% end %>
+	</tbody>
+</table>
+		

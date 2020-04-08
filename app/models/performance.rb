@@ -10,7 +10,7 @@ class Performance < ApplicationRecord
 	QUESTION_TYPES = {"How many treasurers counted?" => "treasurer_count", "When did counting start after service?" => "counting_start", "When was it paid into the bank or sent via mobile money or paid to council treasurer?" => "when_deposit"}
 	
 	def self.generate_reports
-		puts "Today is not end of month" and return unless Date.today == Date.today.end_of_month
+		
 		CouncilConnection.where(COUNCILSTATUS:"ACTIVE").each {|council| council.generate_report}
 	end
 end

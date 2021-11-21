@@ -69,7 +69,7 @@ end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
-gem 'rrt', '~>1.2.10', source: 'https://gems.kiso.io/'
+#gem 'rrt', '~>1.2.10', source: 'https://gems.kiso.io/'
 
 gem 'jquery-rails'
 gem 'devise'
@@ -90,6 +90,7 @@ gem 'active_storage_validations'
 gem 'mini_magick', '>= 4.9.5'
 gem "aws-sdk-s3", require: false
 gem 'delayed_job_active_record'
-gem 'ransack', github: 'activerecord-hackery/ransack'
+#gem 'ransack', github: 'activerecord-hackery/ransack'
+gem 'ransack'
 gem 'tiny_tds'
 gem 'activerecord-sqlserver-adapter'

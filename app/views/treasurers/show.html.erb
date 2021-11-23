@@ -4,7 +4,7 @@
 	
 		<div class="row">
 			<div class="col-12 col-md-8">
-				<%= link_to @treasurer.user.treasurer? ? "Make Principal Treasurer" : "Remove Principal Treasurer Role", make_principal_treasurer_path, class:"btn pull-right mb-3 #{@treasurer.verified ? 'bg-warning' : 'bg-success'} #{@treasurer.verified ?  'verify_btn' : ''}" if current_user.admin? %> <br>
+				<%= link_to @treasurer.user && @treasurer.user.treasurer? ? "Make Principal Treasurer" : "Remove Principal Treasurer Role", make_principal_treasurer_path, class:"btn pull-right mb-3 #{@treasurer.verified ? 'bg-warning' : 'bg-success'} #{@treasurer.verified ?  'verify_btn' : ''}" if current_user.admin? %> <br>
 				</h3>
 			</div>
 </div>
@@ -84,7 +84,7 @@
              <div class="form-group row">
                 <label class="col-12 col-md-12 form-label">Email Address:
 									<span>
-                    <%= @treasurer.user.email %>
+                    <%= @treasurer.user.email if @treasurer.user %>
                   </span>
 							 </label>
               </div>

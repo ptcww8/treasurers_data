@@ -51,7 +51,7 @@
 										<td><%= Performance::WHEN_COUNTED.key(performance.when_counted) %></td>
 										<td><%= Performance::WHEN_PAID.key(performance.when_paid) %></td>
 										<td><%= Treasurer.find_by_id(performance.who_paid.to_i).full_name if performance.who_paid.strip.present? %></td>
-										<td><%= User.find_by_id(performance.completed_by).treasurer.full_name %></td>
+										<td><%= performance.user.treasurer.full_name if performance.user.present? %></td>
 									<td class="actions text-right">
                       <div class="btn-group">
                         <%= link_to theme_icon_tag("eye"), performance, 'data-toggle': 'tooltip', title: 'Show', class: "btn btn-link" %>

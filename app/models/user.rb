@@ -4,6 +4,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :confirmable, :lockable, :timeoutable, :trackable
 	has_one :treasurer, dependent: :destroy
+  has_many :performances, dependent: :destroy
 	enum role: [:admin, :principal_treasurer, :treasurer]
 
   after_initialize :set_default_role, :if => :new_record? 

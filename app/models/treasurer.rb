@@ -1,5 +1,5 @@
 class Treasurer < ApplicationRecord
-	belongs_to :user
+	belongs_to :user, foreign_key: "completed_by"
 	has_one_attached :image
 	validates :image, attached: true, content_type: /(image)(\/)/i
 	self.per_page = 20

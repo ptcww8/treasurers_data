@@ -1,6 +1,7 @@
 class Performance < ApplicationRecord
 	WHEN_COUNTED = {"15 minutes" => "0", "30 minutes" => "1", "45 minutes" => "2", "1 hour" => "3", "more than 1 hour" => "4"}
 	WHEN_PAID = {"within 24 hours" => "0", "after 24 hours" => "1"}
+  belongs_to :user
 	serialize :who_came, Array
 	serialize :who_counted, Array
 	validates_presence_of :service_type, :sunday_service, :who_counted, :who_came, :branch_id, :completed_by

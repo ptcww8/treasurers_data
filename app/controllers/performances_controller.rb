@@ -81,7 +81,7 @@ class PerformancesController < ApplicationController
 	
 	def pull_council_and_branches
 		unless current_user.principal_treasurer?
-		  @councils = Branch.order(council: :asc).pluck(:COUNCIL).uniq
+		  @councils = Branch.order(council: :asc).pluck(:council).uniq
 			@branches = Branch.where(council: Branch.first.council).order(branch: :asc).pluck(:branch)
 		else
 			@councils = [current_user.treasurer.council] if current_user.principal_treasurer?

@@ -31,15 +31,15 @@ class TreasurersController < ApplicationController
   def new
 		head 404 and return if current_user.treasurer.present?
     @treasurer = Treasurer.new
-		@councils = BranchConnection.where(BRANCHSTATUS: "ACTIVE").order(COUNCIL: :asc).pluck(:COUNCIL).uniq
-		@branches = BranchConnection.where(BRANCHSTATUS: "ACTIVE", COUNCIL: CouncilConnection.first.COUNCIL).order(BRANCH: :asc).pluck(:BRANCH)
+		@councils = Branch.order(council: :asc).pluck(:council).uniq
+		@branches = Branch.where(council: Branch.first.council).order(branch: :asc).pluck(:branch)
   end
 	
 	def pull_branches
-		@branches = BranchConnection.where(BRANCHSTATUS: "ACTIVE", COUNCIL: params[:council]).order(BRANCH: :asc).uniq
+		@branches = Branch.where(council: params[:council]).order(branch: :asc).uniq
 		branch_data = []
 		@branches.map do |branch|
-			branch_data << {:branch_selected => current_user.treasurer && branch.BRANCH == current_user.treasurer.branch_id ? "yes" : "no", :branch_name => branch.BRANCH}
+			branch_data << {:branch_selected => current_user.treasurer && branch.branch == current_user.treasurer.branch_id ? "yes" : "no", :branch_name => branch.branch}
 		end
 		render json: branch_data.as_json 
 		
@@ -48,15 +48,15 @@ class TreasurersController < ApplicationController
 
   # GET /treasurers/1/edit
   def edit
-		@councils = BranchConnection.where(BRANCHSTATUS: "ACTIVE").order(COUNCIL: :asc).pluck(:COUNCIL).uniq
-		@branches = BranchConnection.where(BRANCHSTATUS: "ACTIVE", COUNCIL: @treasurer.council).order(BRANCH: :asc).pluck(:BRANCH) if @treasurer.council
-		@branches = BranchConnection.where(BRANCHSTATUS: "ACTIVE", COUNCIL: CouncilConnection.first.COUNCIL).order(BRANCH: :asc).pluck(:BRANCH) unless @treasurer.council
+		@councils = Branch.order(council: :asc).pluck(:council).uniq
+		@branches = Branch.where(council: @treasurer.council).order(branch: :asc).pluck(:branch) if @treasurer.council
+		@branches = Branch.where(council: Council.first.council).order(branch: :asc).pluck(:branch) unless @treasurer.council
   end
 
   # POST /treasurers
   def create
-		@councils = BranchConnection.where(BRANCHSTATUS: "ACTIVE").order(COUNCIL: :asc).pluck(:COUNCIL).uniq
-		@branches = BranchConnection.where(BRANCHSTATUS: "ACTIVE", COUNCIL: CouncilConnection.first.COUNCIL).order(BRANCH: :asc).pluck(:BRANCH)
+		@councils = Branch.order(council: :asc).pluck(:council).uniq
+		@branches = Branch.where(council: Branch.first.council).order(branch: :asc).pluck(:branch)
     @treasurer = current_user.build_treasurer(treasurer_params)
 		if params[:treasurer][:training_manual]
 			@treasurer.training_manual = ActiveModel::Type::Boolean.new.cast(params[:treasurer][:training_manual])
@@ -89,8 +89,8 @@ class TreasurersController < ApplicationController
 
   # PATCH/PUT /treasurers/1
   def update
-		@councils = BranchConnection.where(BRANCHSTATUS: "ACTIVE").order(COUNCIL: :asc).pluck(:COUNCIL).uniq
-		@branches = BranchConnection.where(BRANCHSTATUS: "ACTIVE", COUNCIL: CouncilConnection.first.COUNCIL).order(BRANCH: :asc).pluck(:BRANCH)
+		@councils = Branch.order(council: :asc).pluck(:council).uniq
+		@branches = Branch.where(council: Branch.first.council).order(branch: :asc).pluck(:branch)
 		if params[:treasurer][:training_manual]
 			@treasurer.training_manual = ActiveModel::Type::Boolean.new.cast(params[:treasurer][:training_manual])
 		end

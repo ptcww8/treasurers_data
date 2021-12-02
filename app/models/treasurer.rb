@@ -1,5 +1,5 @@
 class Treasurer < ApplicationRecord
-	belongs_to :user, foreign_key: "completed_by"
+	belongs_to :user
 	has_one_attached :image
 	validates :image, attached: true, content_type: /(image)(\/)/i
 	self.per_page = 20
@@ -28,18 +28,5 @@ class Treasurer < ApplicationRecord
   def full_name
     "#{first_name} #{last_name}"
   end
-	
-	def self.pull_branches
-		client = TinyTds::Client.new(username: "pbiappuser@cioreportsrv.database.windows.net", password: "udappuser514!", host: "cioreportsrv.database.windows.net", database: "GlobalAttendanceDataDB", azure: true , port: "1433")
-		
-		puts "Reading data from table"
-    tsql = "SELECT TOP 1 * from EDW_UDBRANCHES"
-    result = client.execute(tsql)
-    result.each do |row|
-      puts row
-    end
-		
-		
-	end
 	
 end

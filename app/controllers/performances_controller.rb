@@ -10,7 +10,7 @@ class PerformancesController < ApplicationController
 			@performances = Performance.all.order(sunday_service: :desc)
 		elsif current_user.principal_treasurer?
 			@current_council = params[:council]
-		  @current_branches = BranchConnection.where(BRANCHSTATUS: "ACTIVE", COUNCIL: current_user.treasurer.council).order(BRANCH: :asc).pluck(:BRANCH)
+		  @current_branches = Branch.where(council: current_user.treasurer.council).order(branch: :asc).pluck(:branch)
 			@performances = Performance.where(branch_id: @current_branches).order(sunday_service: :desc)
 		else
       @performances = Performance.where(branch_id: current_user.treasurer.branch_id).order(sunday_service: :desc)
@@ -81,11 +81,11 @@ class PerformancesController < ApplicationController
 	
 	def pull_council_and_branches
 		unless current_user.principal_treasurer?
-		  @councils = BranchConnection.where(BRANCHSTATUS: "ACTIVE").order(COUNCIL: :asc).pluck(:COUNCIL).uniq
-			@branches = BranchConnection.where(BRANCHSTATUS: "ACTIVE", COUNCIL: CouncilConnection.first.COUNCIL).order(BRANCH: :asc).pluck(:BRANCH)
+		  @councils = Branch.order(council: :asc).pluck(:COUNCIL).uniq
+			@branches = Branch.where(council: Branch.first.council).order(branch: :asc).pluck(:branch)
 		else
 			@councils = [current_user.treasurer.council] if current_user.principal_treasurer?
-			@branches = BranchConnection.where(BRANCHSTATUS: "ACTIVE", COUNCIL: current_user.treasurer.council).order(BRANCH: :asc).pluck(:BRANCH)
+			@branches = Branch.where(council: current_user.treasurer.council).order(branch: :asc).pluck(:branch)
 		end
 		
 		
@@ -95,7 +95,7 @@ class PerformancesController < ApplicationController
 		@results = Hash.new{0}
 		pull_council_and_branches
 		@current_council = params[:council]
-		@current_branches = BranchConnection.where(BRANCHSTATUS: "ACTIVE", COUNCIL: @current_council).order(BRANCH: :asc).pluck(:BRANCH)
+		@current_branches = Branch.where(council: @current_council).order(branch: :asc).pluck(:branch)
 		@start_date = Date.civil(params["start_date(1i)"].to_i, params["start_date(2i)"].to_i, params["start_date(3i)"].to_i)
 		@end_date = Date.civil(params["end_date(1i)"].to_i, params["end_date(2i)"].to_i, params["end_date(3i)"].to_i)
 		@performances = Performance.where(branch_id: @current_branches, sunday_service: @start_date..@end_date)

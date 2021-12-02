@@ -32,7 +32,11 @@ class PerformancesController < ApplicationController
   # GET /performances/1/edit
   def edit
 		@performances = Performance.where(branch_id: current_user.treasurer.branch_id)
-		@treasurers = Treasurer.where(branch_id: current_user.treasurer.branch_id)
+    if current_user.treasurer?
+		  @treasurers = Treasurer.where(branch_id: current_user.treasurer.branch_id)
+    else
+      @treasurers = Treasurer.where(branch_id: @performance.branch_id)
+    end
   end
 
   # POST /performances

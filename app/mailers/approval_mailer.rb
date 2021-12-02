@@ -2,7 +2,9 @@ class ApprovalMailer < ApplicationMailer
 	
 	def send_notification_to_principal(treasurer_id:)
 		return unless @treasurer = Treasurer.find_by_id(treasurer_id)
-		@principal_treasurers = User.joins(:treasurer).where(role: 1).where("treasurers.council = ?", @treasurer.council).pluck(:email)
+		@principal_treasurers = User.joins(:treasurer).where(role: :principal_treasurers).where("treasurers.council = ?", @treasurer.council).pluck(:email)
+    @admins = User.where(role: :admin).pluck(:email)
+    @principal_treasurers = @principal_treasurers + @admins
 		@to_treasurer = false
 		mail(to: @principal_treasurers, subject: "New Treasurer Added") do |format|
       format.html { render 'email_content'}
@@ -37,7 +39,7 @@ class ApprovalMailer < ApplicationMailer
 	def notify_of_privileges(treasurer_id:)
 		return unless @treasurer = Treasurer.find_by_id(treasurer_id)
 		@approve = true
-		mail(to: @treasurer.user.email, subject: "You Are Now A Principal Treasurer") do |format|
+		mail(to: @treasurer.user.email, subject: "Your Principal Treasurer Privileges") do |format|
       format.html { render 'email_privilege_content'}
     end
 	end	

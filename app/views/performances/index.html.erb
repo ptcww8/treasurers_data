@@ -19,6 +19,7 @@
               <table class="table table-striped table-hover">
                 <thead>
                   <tr>
+                    <th>Year of Service</th>
 										<th>Date of Service</th>
 										<% if current_user.admin? %>
 										<th>Council</th>
@@ -37,6 +38,7 @@
                 <tbody>
                 <% @performances.each do |performance| %>
                   <tr>
+                    <td><%= performance.sunday_service.strftime("%Y") %></td>
 										<td><%= performance.sunday_service.strftime("%A, %b %d") %></td>
 										<% if current_user.admin? %>
 										<% branch = BranchConnection.find_by_BRANCH(performance.branch_id) %>

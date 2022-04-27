@@ -2,7 +2,7 @@ class ApprovalMailer < ApplicationMailer
 	
 	def send_notification_to_principal(treasurer_id:)
 		return unless @treasurer = Treasurer.find_by_id(treasurer_id)
-		@principal_treasurers = User.joins(:treasurer).where(role: :principal_treasurers).where("treasurers.council = ?", @treasurer.council).pluck(:email)
+		@principal_treasurers = User.joins(:treasurer).where(role: User.roles["principal_treasurer"]).where("treasurers.council = ?", @treasurer.council).pluck(:email)
     @admins = User.where(role: :admin).pluck(:email)
     @principal_treasurers = @principal_treasurers + @admins
 		@to_treasurer = false
